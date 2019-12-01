@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!--Description-->
+
+    
+
+    
+        <meta name="description" content="contextlib 库提供了一些接口，使我们能更容器的实现 with 语法。下面主要介绍下 contextmanager 和 suppress 的用法。
+with语法的实现平时我们实现读取文件的操作时，会使用 with 语法，像下面这样：
+12with open(&#34;data.txt&#34;) as f:"/>
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="wyzane"/>
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Python标准库之contextlib"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="contextlib 库提供了一些接口，使我们能更容器的实现 with 语法。下面主要介绍下 contextmanager 和 suppress 的用法。
+with语法的实现平时我们实现读取文件的操作时，会使用 with 语法，像下面这样：
+12with open(&#34;data.txt&#34;) as f:"/>
+    
+
+    <!--Open Graph Site Name-->
+        <meta property="og:site_name" content="wyzane&#39;s skill blog"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article"/>
+    
+
+    <!--Page Cover-->
+    
+    
+        <meta property="og:image" content="http://wyzane.cc/img/home7.jpg"/>
+    
+
+        <meta name="twitter:card" content="summary_large_image"/>
+
+    
+
+    
+        <meta name="twitter:image" content="http://wyzane.cc/img/home7.jpg"/>
+    
+
+    <!-- Title -->
+    
+    <title>Python标准库之contextlib - wyzane&#39;s skill blog</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css"/>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet"/>
+
+    <!-- Google Analytics -->
+    
+
+
+    <!-- favicon -->
+    
+
+</head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">share and progress!</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="http://www.wyzane.com" target="_blank" rel="noopener">
+                            
+                                OldBlog
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="https://github.com/wyzane" target="_blank" rel="noopener">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('/img/home7.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>Python标准库之contextlib</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2019-12-01
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/Python/">#Python</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p>contextlib 库提供了一些接口，使我们能更容器的实现 with 语法。下面主要介绍下 contextmanager 和 suppress 的用法。</p>
+<h2 id="with语法的实现"><a href="#with语法的实现" class="headerlink" title="with语法的实现"></a>with语法的实现</h2><p>平时我们实现读取文件的操作时，会使用 with 语法，像下面这样：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> open(<span class="string">"data.txt"</span>) <span class="keyword">as</span> f:</span><br><span class="line">    f.read()</span><br></pre></td></tr></table></figure>
+
+<p>这样读取完文件后，会自动执行 f.close() 操作，关闭文件对象。</p>
+<p>实际上，我们也可以用过实现魔法函数 __enter__() 和 __exit__() 来自定义 with 语法，像下面这样：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyOpen</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, file, flag)</span>:</span></span><br><span class="line">        self.f = open(file, flag)</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__enter__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""with ... as中as后面的内容</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">return</span> self.f</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__exit__</span><span class="params">(self, exc_type, exc_val, exc_tb)</span>:</span></span><br><span class="line">        <span class="string">"""with语句块执行完成后执行</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        self.f.close()</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    <span class="keyword">with</span> MyOpen(<span class="string">"test.txt"</span>, <span class="string">"w"</span>) <span class="keyword">as</span> f:</span><br><span class="line">        f.write(<span class="string">"hello jupyter!"</span>)</span><br></pre></td></tr></table></figure>
+
+<p>其中， __enter__() 函数的返回值是 with … as 后面的对象，__exit__()函数中定义with语句块执行完成后的操作。</p>
+<h2 id="contextmanager"><a href="#contextmanager" class="headerlink" title="contextmanager"></a>contextmanager</h2><p>contextmanager 函数是一个装饰器，可以使用它来实现 with 语法，而不用实现 __enter__() 和 __exit__() 。上文中实现 with 语法的例子可以写成下面这样：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> contextlib <span class="keyword">import</span> contextmanager</span><br><span class="line"></span><br><span class="line"><span class="meta">@contextmanager</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">MyOpen</span><span class="params">(name, state)</span>:</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        f = open(name, state)</span><br><span class="line">        <span class="keyword">yield</span> f</span><br><span class="line">    <span class="keyword">finally</span>:</span><br><span class="line">        f.close()</span><br><span class="line">      </span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    <span class="keyword">with</span> MyOpen(<span class="string">"test.txt"</span>, <span class="string">"w"</span>) <span class="keyword">as</span> f:</span><br><span class="line">        f.write(<span class="string">"hello jupyter notebook!"</span>)</span><br></pre></td></tr></table></figure>
+
+<p>使用 contextmanager 实现 with 语法时，被修饰的方法必须是一个生成器，生成器返回的值就作为 as 后面的值。</p>
+<p>下面再看一个例子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> contextlib <span class="keyword">import</span> contextmanager</span><br><span class="line"> </span><br><span class="line"><span class="meta">@contextmanager</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">example</span><span class="params">()</span>:</span></span><br><span class="line">    l = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line">    print(<span class="string">'start'</span>)</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="comment"># raise Exception('test')</span></span><br><span class="line">        <span class="keyword">yield</span> l</span><br><span class="line">    <span class="keyword">finally</span>:</span><br><span class="line">        print(<span class="string">'end'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> example() <span class="keyword">as</span> msg:</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> msg:</span><br><span class="line">        print(i)</span><br></pre></td></tr></table></figure>
+
+<p>如果在 contextmanager 修饰的函数中发生异常时，我们可以在函数中捕获该异常，像下面这样：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@contextmanager</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">example</span><span class="params">()</span>:</span></span><br><span class="line">    l = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line">    print(<span class="string">'start'</span>)</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">yield</span> l</span><br><span class="line">        <span class="keyword">raise</span> Exception(<span class="string">'test'</span>)</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        print(<span class="string">"exception"</span>)</span><br><span class="line">    <span class="keyword">finally</span>:</span><br><span class="line">        print(<span class="string">'end'</span>)</span><br></pre></td></tr></table></figure>
+
+<p>也可以在 with 语句块之外捕获该异常：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@contextmanager</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">example</span><span class="params">()</span>:</span></span><br><span class="line">    l = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line">    print(<span class="string">'start'</span>)</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">yield</span> l</span><br><span class="line">        <span class="keyword">raise</span> Exception(<span class="string">'test'</span>)</span><br><span class="line">    <span class="keyword">finally</span>:</span><br><span class="line">        print(<span class="string">'end'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">with</span> example() <span class="keyword">as</span> msg:</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> msg:</span><br><span class="line">            print(i)</span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>如果异常发生在 yeild 之前，则 yield 不会返回到 with 语句中，with语句块会抛出RuntimeError异常：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@contextmanager</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">example</span><span class="params">()</span>:</span></span><br><span class="line">    l = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line">    print(<span class="string">'start'</span>)</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">raise</span> Exception(<span class="string">'test'</span>)</span><br><span class="line">        <span class="keyword">yield</span> l</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        print(<span class="string">"exception"</span>)</span><br><span class="line">    <span class="keyword">finally</span>:</span><br><span class="line">        print(<span class="string">'end'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> example() <span class="keyword">as</span> msg:</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> msg:</span><br><span class="line">        print(i)</span><br></pre></td></tr></table></figure>
+
+<p>上面的代码会抛出如下异常：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">raceback (most recent call last):</span><br><span class="line">  File <span class="string">"tmp.py"</span>, line <span class="number">17</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">    <span class="keyword">with</span> example() <span class="keyword">as</span> msg:</span><br><span class="line">  File <span class="string">"D:\software\Python36\lib\contextlib.py"</span>, line <span class="number">83</span>, <span class="keyword">in</span> __enter__</span><br><span class="line">    <span class="keyword">raise</span> RuntimeError(<span class="string">"generator didn't yield"</span>) <span class="keyword">from</span> <span class="literal">None</span></span><br><span class="line">RuntimeError: generator didn<span class="string">'t yield</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>contextmanager 的源码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">contextmanager</span><span class="params">(func)</span>:</span></span><br><span class="line">    <span class="string">"""@contextmanager decorator.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Typical usage:</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        @contextmanager</span></span><br><span class="line"><span class="string">        def some_generator(&lt;arguments&gt;):</span></span><br><span class="line"><span class="string">            &lt;setup&gt;</span></span><br><span class="line"><span class="string">            try:</span></span><br><span class="line"><span class="string">                yield &lt;value&gt;</span></span><br><span class="line"><span class="string">            finally:</span></span><br><span class="line"><span class="string">                &lt;cleanup&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    This makes this:</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        with some_generator(&lt;arguments&gt;) as &lt;variable&gt;:</span></span><br><span class="line"><span class="string">            &lt;body&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    equivalent to this:</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        &lt;setup&gt;</span></span><br><span class="line"><span class="string">        try:</span></span><br><span class="line"><span class="string">            &lt;variable&gt; = &lt;value&gt;</span></span><br><span class="line"><span class="string">            &lt;body&gt;</span></span><br><span class="line"><span class="string">        finally:</span></span><br><span class="line"><span class="string">            &lt;cleanup&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line"><span class="meta">    @wraps(func)</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">helper</span><span class="params">(*args, **kwds)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> _GeneratorContextManager(func, args, kwds)</span><br><span class="line">    <span class="keyword">return</span> helper</span><br></pre></td></tr></table></figure>
+
+<p>contextmanager 会返回一个<em>GeneratorContextManager 对象。 _GeneratorContextManager 类中实现了 __enter_\</em>() 和 __exit__() 方法，如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, func, args, kwds)</span>:</span></span><br><span class="line">    self.gen = func(*args, **kwds)</span><br><span class="line">    self.func, self.args, self.kwds = func, args, kwds</span><br><span class="line">    <span class="comment"># Issue 19330: ensure context manager instances have good docstrings</span></span><br><span class="line">    doc = getattr(func, <span class="string">"__doc__"</span>, <span class="literal">None</span>)</span><br><span class="line">    <span class="keyword">if</span> doc <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">        doc = type(self).__doc__</span><br><span class="line">    self.__doc__ = doc</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">__enter__</span><span class="params">(self)</span>:</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">return</span> next(self.gen)</span><br><span class="line">    <span class="keyword">except</span> StopIteration:</span><br><span class="line">        <span class="keyword">raise</span> RuntimeError(<span class="string">"generator didn't yield"</span>) <span class="keyword">from</span> <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">__exit__</span><span class="params">(self, type, value, traceback)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> type <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            next(self.gen)</span><br><span class="line">        <span class="keyword">except</span> StopIteration:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">raise</span> RuntimeError(<span class="string">"generator didn't stop"</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">if</span> value <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">            <span class="comment"># Need to force instantiation so we can reliably</span></span><br><span class="line">            <span class="comment"># tell if we get the same exception back</span></span><br><span class="line">            value = type()</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            self.gen.throw(type, value, traceback)</span><br><span class="line">        <span class="keyword">except</span> StopIteration <span class="keyword">as</span> exc:</span><br><span class="line">            <span class="comment"># Suppress StopIteration *unless* it's the same exception that</span></span><br><span class="line">            <span class="comment"># was passed to throw().  This prevents a StopIteration</span></span><br><span class="line">            <span class="comment"># raised inside the "with" statement from being suppressed.</span></span><br><span class="line">            <span class="keyword">return</span> exc <span class="keyword">is</span> <span class="keyword">not</span> value</span><br><span class="line">        <span class="keyword">except</span> RuntimeError <span class="keyword">as</span> exc:</span><br><span class="line">            <span class="comment"># Don't re-raise the passed in exception. (issue27122)</span></span><br><span class="line">            <span class="keyword">if</span> exc <span class="keyword">is</span> value:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">            <span class="comment"># Likewise, avoid suppressing if a StopIteration exception</span></span><br><span class="line">            <span class="comment"># was passed to throw() and later wrapped into a RuntimeError</span></span><br><span class="line">            <span class="comment"># (see PEP 479).</span></span><br><span class="line">            <span class="keyword">if</span> type <span class="keyword">is</span> StopIteration <span class="keyword">and</span> exc.__cause__ <span class="keyword">is</span> value:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">            <span class="keyword">raise</span></span><br><span class="line">        <span class="keyword">except</span>:</span><br><span class="line">            <span class="comment"># only re-raise if it's *not* the exception that was</span></span><br><span class="line">            <span class="comment"># passed to throw(), because __exit__() must not raise</span></span><br><span class="line">            <span class="comment"># an exception unless __exit__() itself failed.  But throw()</span></span><br><span class="line">            <span class="comment"># has to raise the exception to signal propagation, so this</span></span><br><span class="line">            <span class="comment"># fixes the impedance mismatch between the throw() protocol</span></span><br><span class="line">            <span class="comment"># and the __exit__() protocol.</span></span><br><span class="line">            <span class="comment">#</span></span><br><span class="line">            <span class="keyword">if</span> sys.exc_info()[<span class="number">1</span>] <span class="keyword">is</span> value:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">            <span class="keyword">raise</span></span><br><span class="line">        <span class="keyword">raise</span> RuntimeError(<span class="string">"generator didn't stop after throw()"</span>)</span><br></pre></td></tr></table></figure>
+
+<p><em>GeneratorContextManager初始化时，会接收一个生成器函数，__enter_\</em>()方法中会返回该生成器函数的值。</p>
+<h2 id="suppress的使用"><a href="#suppress的使用" class="headerlink" title="suppress的使用"></a>suppress的使用</h2><p>suppress会返回一个上下文管理器对象，如果with语句块中出现异常时，会忽略 suppress 中指定的异常，并且退出程序。例子如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    os.remove(<span class="string">'somefile.tmp'</span>)</span><br><span class="line"><span class="keyword">except</span> FileNotFoundError:</span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    os.remove(<span class="string">'someotherfile.tmp'</span>)</span><br><span class="line"><span class="keyword">except</span> FileNotFoundError:</span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line">    </span><br><span class="line"><span class="comment"># 上面的异常捕获可以写成下面这样</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> contextlib <span class="keyword">import</span> suppress</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> suppress(FileNotFoundError):</span><br><span class="line">    os.remove(<span class="string">'somefile.tmp'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> suppress(FileNotFoundError):</span><br><span class="line">    os.remove(<span class="string">'someotherfile.tmp'</span>)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> contextlib</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NonFatalError</span><span class="params">(Exception)</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">non_idempotent_operation</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">raise</span> NonFatalError(</span><br><span class="line">        <span class="string">'The operation failed because of existing state'</span></span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> contextlib.suppress(NonFatalError):</span><br><span class="line">    print(<span class="string">'trying non-idempotent operation'</span>)</span><br><span class="line">    non_idempotent_operation()</span><br><span class="line">    print(<span class="string">'succeeded!'</span>)</span><br><span class="line"></span><br><span class="line">print(<span class="string">'done'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># output</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">trying non-idempotent operation</span></span><br><span class="line"><span class="string">done</span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure>
+
+<p>supress中需要传入异常名称，不能为空。</p>
+<p>以上就是 contextlib中 contextmanager 和 suppress 的用法。</p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/wyzane" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="mailto:wyzane1207@gmail.com" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2019 wyzane<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>
