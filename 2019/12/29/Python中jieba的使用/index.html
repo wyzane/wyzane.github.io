@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!--Description-->
+
+    
+
+    
+        <meta name="description" content="jieba的使用安装123456方式1：pip install jieba方式2：先下载 http://pypi.python.org/pypi/jieba/然后解压，运行 python setup.py install
+
+功能下面介绍下jieba的主要功能，具体信息可参考github文档：http"/>
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="wyzane"/>
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Python中jieba的使用"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="jieba的使用安装123456方式1：pip install jieba方式2：先下载 http://pypi.python.org/pypi/jieba/然后解压，运行 python setup.py install
+
+功能下面介绍下jieba的主要功能，具体信息可参考github文档：http"/>
+    
+
+    <!--Open Graph Site Name-->
+        <meta property="og:site_name" content="wyzane&#39;s skill blog"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article"/>
+    
+
+    <!--Page Cover-->
+    
+    
+        <meta property="og:image" content="http://wyzane.cc/img/home7.jpg"/>
+    
+
+        <meta name="twitter:card" content="summary_large_image"/>
+
+    
+
+    
+        <meta name="twitter:image" content="http://wyzane.cc/img/home7.jpg"/>
+    
+
+    <!-- Title -->
+    
+    <title>Python中jieba的使用 - wyzane&#39;s skill blog</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css"/>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet"/>
+
+    <!-- Google Analytics -->
+    
+
+
+    <!-- favicon -->
+    
+
+</head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">share and progress!</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="http://www.wyzane.com" target="_blank" rel="noopener">
+                            
+                                OldBlog
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="https://github.com/wyzane" target="_blank" rel="noopener">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('/img/home7.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>Python中jieba的使用</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2019-12-29
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/python/">#python</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h2 id="jieba的使用"><a href="#jieba的使用" class="headerlink" title="jieba的使用"></a>jieba的使用</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">方式1：</span><br><span class="line">pip install jieba</span><br><span class="line"></span><br><span class="line">方式2：</span><br><span class="line">先下载 http://pypi.python.org/pypi/jieba/</span><br><span class="line">然后解压，运行 python setup.py install</span><br></pre></td></tr></table></figure>
+
+<h3 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h3><p>下面介绍下jieba的主要功能，具体信息可参考github文档：<a href="https://github.com/fxsjy/jieba" target="_blank" rel="noopener">https://github.com/fxsjy/jieba</a></p>
+<h4 id="分词"><a href="#分词" class="headerlink" title="分词"></a>分词</h4><p>jieba常用的三种模式：</p>
+<ol>
+<li>精确模式，试图将句子最精确地切开，适合文本分析；</li>
+<li>全模式，把句子中所有的可以成词的词语都扫描出来, 速度非常快，但是不能解决歧义；</li>
+<li>搜索引擎模式，在精确模式的基础上，对长词再次切分，提高召回率，适合用于搜索引擎分词。</li>
+</ol>
+<p>可使用 <code>jieba.cut</code> 和 <code>jieba.cut_for_search</code> 方法进行分词，两者所返回的结构都是一个可迭代的 generator，可使用 for 循环来获得分词后得到的每一个词语（unicode），或者直接使用 <code>jieba.lcut</code> 以及 <code>jieba.lcut_for_search</code> 返回 list。</p>
+<p><code>jieba.Tokenizer(dictionary=DEFAULT_DICT)</code> ：使用该方法可以自定义分词器，可以同时使用不同的词典。<code>jieba.dt</code> 为默认分词器，所有全局分词相关函数都是该分词器的映射。</p>
+<p> <code>jieba.cut</code> 和 <code>jieba.lcut</code> 可接受的参数如下：</p>
+<ol>
+<li>需要分词的字符串（unicode 或 UTF-8 字符串、GBK 字符串）</li>
+<li>cut_all：是否使用全模式，默认值为 <code>False</code></li>
+<li>HMM：用来控制是否使用 HMM 模型，默认值为 <code>True</code></li>
+</ol>
+<p><code>jieba.cut_for_search</code> 和 <code>jieba.lcut_for_search</code> 接受 2 个参数：</p>
+<ol>
+<li>需要分词的字符串（unicode 或 UTF-8 字符串、GBK 字符串）</li>
+<li>HMM：用来控制是否使用 HMM 模型，默认值为 <code>True</code></li>
+</ol>
+<p>需要注意的是，尽量不要使用 GBK 字符串，可能无法预料地错误解码成 UTF-8。</p>
+<p>三种分词模式的比较：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 全匹配</span></span><br><span class="line">seg_list = jieba.cut(<span class="string">"今天哪里都没去，在家里睡了一天"</span>, cut_all=<span class="literal">True</span>)</span><br><span class="line">print(list(seg_list))  <span class="comment"># ['今天', '哪里', '都', '没去', '', '', '在家', '家里', '睡', '了', '一天']</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 精确匹配 默认模式</span></span><br><span class="line">seg_list = jieba.cut(<span class="string">"今天哪里都没去，在家里睡了一天"</span>, cut_all=<span class="literal">False</span>)</span><br><span class="line">print(list(seg_list))  <span class="comment"># ['今天', '哪里', '都', '没', '去', '，', '在', '家里', '睡', '了', '一天']</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 精确匹配</span></span><br><span class="line">seg_list = jieba.cut_for_search(<span class="string">"今天哪里都没去，在家里睡了一天"</span>)</span><br><span class="line">print(list(seg_list))  <span class="comment"># ['今天', '哪里', '都', '没', '去', '，', '在', '家里', '睡', '了', '一天']</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="自定义词典"><a href="#自定义词典" class="headerlink" title="自定义词典"></a>自定义词典</h4><p>开发者可以指定自己自定义的词典，以便包含 jieba 词库里没有的词。<br>用法： jieba.load_userdict(dict_path)  </p>
+<p>dict_path：为自定义词典文件的路径</p>
+<p>词典格式如下：</p>
+<p>一个词占一行；每一行分三部分：词语、词频（可省略）、词性（可省略），用空格隔开，顺序不可颠倒。</p>
+<p>下面使用一个例子说明一下：</p>
+<p>自定义字典 user_dict.txt：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">大学课程</span><br><span class="line">深度学习</span><br></pre></td></tr></table></figure>
+
+<p>下面比较下精确匹配、全匹配和使用自定义词典的区别：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> jieba</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">test_sent = <span class="string">"""</span></span><br><span class="line"><span class="string">数学是一门基础性的大学课程，深度学习是基于数学的，尤其是线性代数课程</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line">words = jieba.cut(test_sent)</span><br><span class="line">print(list(words))</span><br><span class="line"><span class="comment"># ['\n', '数学', '是', '一门', '基础性', '的', '大学', '课程', '，', '深度',</span></span><br><span class="line"><span class="comment"># '学习', '是', '基于', '数学', '的', '，', '尤其', '是', '线性代数', '课程', '\n']</span></span><br><span class="line"></span><br><span class="line">words = jieba.cut(test_sent, cut_all=<span class="literal">True</span>)</span><br><span class="line">print(list(words))</span><br><span class="line"><span class="comment"># ['\n', '数学', '是', '一门', '基础', '基础性', '的', '大学', '课程', '', '', '深度',</span></span><br><span class="line"><span class="comment"># '学习', '是', '基于', '数学', '的', '', '', '尤其', '是', '线性', '线性代数', '代数', '课程', '\n']</span></span><br><span class="line"></span><br><span class="line">jieba.load_userdict(<span class="string">"userdict.txt"</span>)</span><br><span class="line">words = jieba.cut(test_sent)</span><br><span class="line">print(list(words))</span><br><span class="line"><span class="comment"># ['\n', '数学', '是', '一门', '基础性', '的', '大学课程', '，', '深度学习', '是',</span></span><br><span class="line"><span class="comment"># '基于', '数学', '的', '，', '尤其', '是', '线性代数', '课程', '\n']</span></span><br><span class="line"></span><br><span class="line">jieba.add_word(<span class="string">"尤其是"</span>)</span><br><span class="line">jieba.add_word(<span class="string">"线性代数课程"</span>)</span><br><span class="line"></span><br><span class="line">words = jieba.cut(test_sent)</span><br><span class="line">print(list(words))</span><br><span class="line"><span class="comment"># ['\n', '数学', '是', '一门', '基础性', '的', '大学课程', '，', '深度学习', '是',</span></span><br><span class="line"><span class="comment"># '基于', '数学', '的', '，', '尤其是', '线性代数课程', '\n']</span></span><br></pre></td></tr></table></figure>
+
+<p>从上面的例子中可以看出，使用自定义词典与使用默认词典的区别。</p>
+<p>jieba.add_word()：向自定义字典中添加词语</p>
+<h4 id="关键词提取"><a href="#关键词提取" class="headerlink" title="关键词提取"></a>关键词提取</h4><p>可以基于 TF-IDF  算法进行关键词提取，也可以基于extRank 算法。 TF-IDF  算法与 elasticsearch 中使用的算法是一样的。</p>
+<p>使用 jieba.analyse.extract_tags() 函数进行关键词提取，其参数如下：</p>
+<p>jieba.analyse.extract_tags(sentence, topK=20, withWeight=False, allowPOS=())</p>
+<ol>
+<li>sentence 为待提取的文本</li>
+<li>topK 为返回几个 TF/IDF 权重最大的关键词，默认值为 20</li>
+<li>withWeight 为是否一并返回关键词权重值，默认值为 False</li>
+<li>allowPOS 仅包括指定词性的词，默认值为空，即不筛选</li>
+<li>jieba.analyse.TFIDF(idf_path=None) 新建 TFIDF 实例，idf_path 为 IDF 频率文件</li>
+</ol>
+<p>也可以使用 jieba.analyse.TFIDF(idf_path=None) 新建 TFIDF 实例，idf_path 为 IDF 频率文件。</p>
+<p>基于 TF-IDF 算法的关键词抽取：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> jieba.analyse</span><br><span class="line"></span><br><span class="line">file = <span class="string">"sanguo.txt"</span></span><br><span class="line">topK = <span class="number">12</span></span><br><span class="line">content = open(file, <span class="string">'rb'</span>).read()</span><br><span class="line"></span><br><span class="line">tags = jieba.analyse.extract_tags(content, topK=topK)</span><br><span class="line">print(tags)</span><br><span class="line"><span class="comment"># ['玄德', '程远志', '张角', '云长', '张飞', '黄巾', '封谞', '刘焉', '邓茂', '邹靖', '姓名', '招军']</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># withWeight=True：将权重值一起返回</span></span><br><span class="line">tags = jieba.analyse.extract_tags(content, topK=topK, withWeight=<span class="literal">True</span>)</span><br><span class="line">print(tags)</span><br><span class="line"><span class="comment"># [('玄德', 0.1038549799467099), ('程远志', 0.07787459004363208), ('张角', 0.0722532891360849),</span></span><br><span class="line"><span class="comment"># ('云长', 0.07048801593691037), ('张飞', 0.060972692853113214), ('黄巾', 0.058227157790330185),</span></span><br><span class="line"><span class="comment"># ('封谞', 0.0563904127495283), ('刘焉', 0.05470798376886792), ('邓茂', 0.04917692565566038),</span></span><br><span class="line"><span class="comment"># ('邹靖', 0.04427258239705188), ('姓名', 0.04219704283997642), ('招军', 0.04182041076757075)]</span></span><br></pre></td></tr></table></figure>
+
+<p>上面的代码是读取文件，提取出现频率最高的前12个词。</p>
+<p>TF-IDF的原理如下：</p>
+<p>词频 (term frequency, TF) 指的是某一个给定的词语在该文件中出现的次数。这个数字通常会被归一化(一般是词频除以文章总词数)。<br>$$<br>TF = \frac{词条W出现的次数}{所有词条的数量}<br>$$<br>逆向文件频率 (inverse document frequency, IDF) IDF的主要思想是：如果包含词条t的文档越少, IDF越大，则说明词条具有很好的类别区分能力。某一特定词语的IDF，可以由总文件数目除以包含该词语之文件的数目，再将得到的商取对数得到。<br>$$<br>IDF = \log_2\frac{语料库文档总数}{包含词条W的文档数+1}<br>$$<br>关键词提取所使用逆向文件频率（IDF）文本语料库，当提取的结果不是我们想要的结果时，我们可以自定义IDF文本语料库。</p>
+<h4 id="词性标注"><a href="#词性标注" class="headerlink" title="词性标注"></a>词性标注</h4><p>词性标注主要是标记文本分词后每个词的词性，使用例子如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> jieba</span><br><span class="line"><span class="keyword">import</span> jieba.posseg <span class="keyword">as</span> pseg</span><br><span class="line"></span><br><span class="line"><span class="comment"># 默认模式</span></span><br><span class="line">seg_list = pseg.cut(<span class="string">"今天哪里都没去，在家里睡了一天"</span>)</span><br><span class="line"><span class="keyword">for</span> word, flag <span class="keyword">in</span> seg_list:</span><br><span class="line">    print(word + <span class="string">" "</span> + flag)</span><br><span class="line">   </span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">使用 jieba 默认模式的输出结果是：</span></span><br><span class="line"><span class="string">我 r</span></span><br><span class="line"><span class="string">Prefix dict has been built successfully.</span></span><br><span class="line"><span class="string">今天 t</span></span><br><span class="line"><span class="string">吃 v</span></span><br><span class="line"><span class="string">早饭 n</span></span><br><span class="line"><span class="string">了 ul</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># paddle 模式</span></span><br><span class="line">words = pseg.cut(<span class="string">"我今天吃早饭了"</span>,use_paddle=<span class="literal">True</span>)</span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">使用 paddle 模式的输出结果是：</span></span><br><span class="line"><span class="string">我 r</span></span><br><span class="line"><span class="string">今天 TIME</span></span><br><span class="line"><span class="string">吃 v</span></span><br><span class="line"><span class="string">早饭 n</span></span><br><span class="line"><span class="string">了 xc</span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure>
+
+<p>paddle模式的词性对照表如下：</p>
+<table>
+<thead>
+<tr>
+<th>标签</th>
+<th>含义</th>
+<th>标签</th>
+<th>含义</th>
+<th>标签</th>
+<th>含义</th>
+<th>标签</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>n</td>
+<td>普通名词</td>
+<td>f</td>
+<td>方位名词</td>
+<td>s</td>
+<td>处所名词</td>
+<td>t</td>
+<td>时间</td>
+</tr>
+<tr>
+<td>nr</td>
+<td>人名</td>
+<td>ns</td>
+<td>地名</td>
+<td>nt</td>
+<td>机构名</td>
+<td>nw</td>
+<td>作品名</td>
+</tr>
+<tr>
+<td>nz</td>
+<td>其他专名</td>
+<td>v</td>
+<td>普通动词</td>
+<td>vd</td>
+<td>动副词</td>
+<td>vn</td>
+<td>名动词</td>
+</tr>
+<tr>
+<td>a</td>
+<td>形容词</td>
+<td>ad</td>
+<td>副形词</td>
+<td>an</td>
+<td>名形词</td>
+<td>d</td>
+<td>副词</td>
+</tr>
+<tr>
+<td>m</td>
+<td>数量词</td>
+<td>q</td>
+<td>量词</td>
+<td>r</td>
+<td>代词</td>
+<td>p</td>
+<td>介词</td>
+</tr>
+<tr>
+<td>c</td>
+<td>连词</td>
+<td>u</td>
+<td>助词</td>
+<td>xc</td>
+<td>其他虚词</td>
+<td>w</td>
+<td>标点符号</td>
+</tr>
+<tr>
+<td>PER</td>
+<td>人名</td>
+<td>LOC</td>
+<td>地名</td>
+<td>ORG</td>
+<td>机构名</td>
+<td>TIME</td>
+<td>时间</td>
+</tr>
+</tbody></table>
+<h4 id="获取词语位置"><a href="#获取词语位置" class="headerlink" title="获取词语位置"></a>获取词语位置</h4><p>将分本分词后，返回每个词和该词在原文中的起始位置，例子如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> jieba</span><br><span class="line"></span><br><span class="line">result = jieba.tokenize(<span class="string">'今天哪里都没去，在家里睡了一天'</span>)</span><br><span class="line"><span class="keyword">for</span> tk <span class="keyword">in</span> result:</span><br><span class="line">    print(<span class="string">"word:"</span> + tk[<span class="number">0</span>] +</span><br><span class="line">          <span class="string">" start:"</span> + str(tk[<span class="number">1</span>]) +</span><br><span class="line">          <span class="string">" end:"</span> + str(tk[<span class="number">2</span>]))</span><br><span class="line">    </span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">word:华为技术有限公司 start:0 end:8</span></span><br><span class="line"><span class="string">word:的 start:8 end:9</span></span><br><span class="line"><span class="string">word:手机 start:9 end:11</span></span><br><span class="line"><span class="string">word:品牌 start:11 end:13</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用 search 模式</span></span><br><span class="line">result = jieba.tokenize(<span class="string">'华为技术有限公司的手机品牌'</span>, mode=<span class="string">"search"</span>)</span><br><span class="line"><span class="keyword">for</span> tk <span class="keyword">in</span> result:</span><br><span class="line">    print(<span class="string">"word:"</span> + tk[<span class="number">0</span>] +</span><br><span class="line">          <span class="string">" start:"</span> + str(tk[<span class="number">1</span>]) +</span><br><span class="line">          <span class="string">" end:"</span> + str(tk[<span class="number">2</span>]))</span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">输出：</span></span><br><span class="line"><span class="string">word:华为 start:0 end:2</span></span><br><span class="line"><span class="string">word:技术 start:2 end:4</span></span><br><span class="line"><span class="string">word:有限 start:4 end:6</span></span><br><span class="line"><span class="string">word:公司 start:6 end:8</span></span><br><span class="line"><span class="string">word:华为技术有限公司 start:0 end:8</span></span><br><span class="line"><span class="string">word:的 start:8 end:9</span></span><br><span class="line"><span class="string">word:手机 start:9 end:11</span></span><br><span class="line"><span class="string">word:品牌 start:11 end:13</span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="收索引擎"><a href="#收索引擎" class="headerlink" title="收索引擎"></a>收索引擎</h4><p>使用 jieba 和 whoosh 可以实现搜索引擎功能。</p>
+<p>whoosh 是由python实现的一款全文搜索工具包，可以使用 pip 安装它：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install whoosh</span><br></pre></td></tr></table></figure>
+
+<p>介绍 jieba + whoosh 实现搜索之前，你可以先看下文 whoosh 的简单介绍。</p>
+<p>下面看一个简单的搜索引擎的例子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> shutil</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> whoosh.fields <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> whoosh.index <span class="keyword">import</span> create_in</span><br><span class="line"><span class="keyword">from</span> whoosh.qparser <span class="keyword">import</span> QueryParser</span><br><span class="line"><span class="keyword">from</span> jieba.analyse <span class="keyword">import</span> ChineseAnalyzer</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">analyzer = ChineseAnalyzer()</span><br><span class="line"></span><br><span class="line">schema = Schema(title=TEXT(stored=<span class="literal">True</span>),</span><br><span class="line">                path=ID(stored=<span class="literal">True</span>),</span><br><span class="line">                content=TEXT(stored=<span class="literal">True</span>,</span><br><span class="line">                             analyzer=analyzer))</span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(<span class="string">"test"</span>):</span><br><span class="line">    os.mkdir(<span class="string">"test"</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="comment"># 递归删除目录</span></span><br><span class="line">    shutil.rmtree(<span class="string">"test"</span>)</span><br><span class="line">    os.mkdir(<span class="string">"test"</span>)</span><br><span class="line"></span><br><span class="line">idx = create_in(<span class="string">"test"</span>, schema)</span><br><span class="line">writer = idx.writer()</span><br><span class="line"></span><br><span class="line">writer.add_document(</span><br><span class="line">    title=<span class="string">u"document1"</span>,</span><br><span class="line">    path=<span class="string">"/tmp1"</span>,</span><br><span class="line">    content=<span class="string">u"Tracy McGrady is a famous basketball player, the elegant basketball style of him attract me"</span>)</span><br><span class="line">writer.add_document(</span><br><span class="line">    title=<span class="string">u"document2"</span>,</span><br><span class="line">    path=<span class="string">"/tmp2"</span>,</span><br><span class="line">    content=<span class="string">u"Kobe Bryant is a famous basketball player too , the tenacious spirit of him also attract me"</span>)</span><br><span class="line">writer.add_document(</span><br><span class="line">    title=<span class="string">u"document3"</span>,</span><br><span class="line">    path=<span class="string">"/tmp3"</span>,</span><br><span class="line">    content=<span class="string">u"LeBron James is the player i do not like"</span>)</span><br><span class="line"></span><br><span class="line">writer.commit()</span><br><span class="line">searcher = idx.searcher()</span><br><span class="line">parser = QueryParser(<span class="string">"content"</span>, schema=idx.schema)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> keyword <span class="keyword">in</span> (<span class="string">"basketball"</span>, <span class="string">"elegant"</span>):</span><br><span class="line">    print(<span class="string">"searched keyword "</span>,keyword)</span><br><span class="line">    query= parser.parse(keyword)</span><br><span class="line">    results = searcher.search(query)</span><br><span class="line">    <span class="keyword">for</span> hit <span class="keyword">in</span> results:</span><br><span class="line">        print(hit.highlights(<span class="string">"content"</span>))</span><br><span class="line">    print(<span class="string">"="</span>*<span class="number">50</span>)</span><br></pre></td></tr></table></figure>
+
+<p>上面代码中，使用 add_document() 把一个文档添加到了 index 中。在这些文档中，搜索含有 “basketball”和 “elegant” 的文档。</p>
+<p>打印结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Building prefix dict from the default dictionary ...</span><br><span class="line">Loading model from cache C:\Users\wyzane\AppData\Local\Temp\jieba.cache</span><br><span class="line">Loading model cost 0.754 seconds.</span><br><span class="line">Prefix dict has been built successfully.</span><br><span class="line">searched keyword  basketball</span><br><span class="line">McGrady is a famous &lt;b class=&quot;match term0&quot;&gt;basketball&lt;/b&gt; player, the elegant...&lt;b class=&quot;match term0&quot;&gt;basketball&lt;/b&gt; style of him attract me</span><br><span class="line">Bryant is a famous &lt;b class=&quot;match term0&quot;&gt;basketball&lt;/b&gt; player too , the tenacious</span><br><span class="line">==================================================</span><br><span class="line">searched keyword  elegant</span><br><span class="line">basketball player, the &lt;b class=&quot;match term0&quot;&gt;elegant&lt;/b&gt; basketball style</span><br><span class="line">==================================================</span><br></pre></td></tr></table></figure>
+
+
+
+<p>更换搜索词时：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> keyword <span class="keyword">in</span> (<span class="string">"LeBron"</span>, <span class="string">"Kobe"</span>):</span><br><span class="line">    print(<span class="string">"searched keyword "</span>,keyword)</span><br><span class="line">    query= parser.parse(keyword)</span><br><span class="line">    results = searcher.search(query)</span><br><span class="line">    <span class="keyword">for</span> hit <span class="keyword">in</span> results:</span><br><span class="line">        print(hit.highlights(<span class="string">"content"</span>))</span><br><span class="line">    print(<span class="string">"="</span>*<span class="number">50</span>)</span><br></pre></td></tr></table></figure>
+
+<p>搜索结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Building prefix dict from the default dictionary ...</span><br><span class="line">Loading model from cache C:\Users\wyzane\AppData\Local\Temp\jieba.cache</span><br><span class="line">Loading model cost 0.801 seconds.</span><br><span class="line">Prefix dict has been built successfully.</span><br><span class="line">searched keyword  LeBron</span><br><span class="line">&lt;b class=&quot;match term0&quot;&gt;LeBron&lt;/b&gt; James is the player i do not like</span><br><span class="line">==================================================</span><br><span class="line">searched keyword  Kobe</span><br><span class="line">&lt;b class=&quot;match term0&quot;&gt;Kobe&lt;/b&gt; Bryant is a famous basketball player too , the tenacious</span><br><span class="line">==================================================</span><br></pre></td></tr></table></figure>
+
+
+
+<p>上面是搜索英文，下面展示下搜索中文。</p>
+<p>添加下面的文档数据：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">writer.add_document(</span><br><span class="line">    title=<span class="string">u"document1"</span>,</span><br><span class="line">    path=<span class="string">"/tmp1"</span>,</span><br><span class="line">    content=<span class="string">u"麦迪是一位著名的篮球运动员，他飘逸的打法深深吸引着我"</span>)</span><br><span class="line">writer.add_document(</span><br><span class="line">    title=<span class="string">u"document2"</span>,</span><br><span class="line">    path=<span class="string">"/tmp2"</span>,</span><br><span class="line">    content=<span class="string">u"科比是一位著名的篮球运动员，他坚韧的精神深深的感染着我"</span>)</span><br><span class="line">writer.add_document(</span><br><span class="line">    title=<span class="string">u"document3"</span>,</span><br><span class="line">    path=<span class="string">"/tmp3"</span>,</span><br><span class="line">    content=<span class="string">u"詹姆斯是我不喜欢的运动员"</span>)</span><br></pre></td></tr></table></figure>
+
+<p>执行搜索：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> keyword <span class="keyword">in</span> (<span class="string">"篮球"</span>, <span class="string">"麦迪"</span>):</span><br><span class="line">    print(<span class="string">"searched keyword "</span>,keyword)</span><br><span class="line">    query= parser.parse(keyword)</span><br><span class="line">    results = searcher.search(query)</span><br><span class="line">    <span class="keyword">for</span> hit <span class="keyword">in</span> results:</span><br><span class="line">        print(hit.highlights(<span class="string">"content"</span>))</span><br><span class="line">    print(<span class="string">"="</span>*<span class="number">50</span>)</span><br></pre></td></tr></table></figure>
+
+<p>结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Building prefix dict from the default dictionary ...</span><br><span class="line">Loading model from cache C:\Users\wyzane\AppData\Local\Temp\jieba.cache</span><br><span class="line">Loading model cost 0.780 seconds.</span><br><span class="line">Prefix dict has been built successfully.</span><br><span class="line">searched keyword  篮球</span><br><span class="line">麦迪是一位著名的&lt;b class=&quot;match term0&quot;&gt;篮球&lt;/b&gt;运动员，他飘逸的打法深深吸引着我</span><br><span class="line">科比是一位著名的&lt;b class=&quot;match term0&quot;&gt;篮球&lt;/b&gt;运动员，他坚韧的精神深深的感染着我</span><br><span class="line">==================================================</span><br><span class="line">searched keyword  麦迪</span><br><span class="line">&lt;b class=&quot;match term0&quot;&gt;麦迪&lt;/b&gt;是一位著名的篮球运动员，他飘逸的打法深深吸引着我</span><br><span class="line">==================================================</span><br></pre></td></tr></table></figure>
+
+
+
+<p>上面就简单介绍了 jieba + whoosh 实现搜索引擎的例子。其实要实现上面的搜索功能，在 elasticsearch 中可以更加简单，有兴趣的同学可以了解一下。</p>
+<h3 id="whoosh"><a href="#whoosh" class="headerlink" title="whoosh"></a>whoosh</h3><p>下面介绍下 whoosh 的使用。</p>
+<p>whoosh 官方文档为：<a href="https://whoosh.readthedocs.io/en/latest/" target="_blank" rel="noopener">https://whoosh.readthedocs.io/en/latest/</a></p>
+<p>使用 whoosh 之前，需要先定义 index 对象，同时创建 schema对象 与 index 对应。schema中包含一列字段，这些字段存放在 index 中。每个字段都是文档中的一部分信息，例如标题和文本内容。字段能被搜索或者存储。</p>
+<p>定义一个 schema，由两个字段：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> whoosh.fields <span class="keyword">import</span> Schema, STORED, ID, KEYWORD, TEXT</span><br><span class="line"></span><br><span class="line">schema = Schema(title=TEXT(stored=<span class="literal">True</span>), content=TEXT,</span><br><span class="line">                path=ID(stored=<span class="literal">True</span>), tags=KEYWORD, </span><br><span class="line">                icon=STORED)</span><br></pre></td></tr></table></figure>
+
+
+
+<p>我们仅需要创建一次 schema，当创建索引时，schema 会被序列化并与 index 保存在一起。</p>
+<p>当创建 schema 对象时，需要指定字段名和其对应的类型，在 whoosh.fields 下，由如下类型：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ID：该类型索引字段的整个值作为一个单位类索引，而不是拆分成多个词</span><br><span class="line">TEXT：该类型适用于文本数据的正文，它为文本建立索引并存储术语位置以允许短语搜索</span><br><span class="line">NUMERIC：数值类型，可以存储整数或者浮点数</span><br><span class="line">BOOLEAN：Boolean类型</span><br><span class="line">DATETIME：适用于 datetime 对象</span><br><span class="line">KEYWORD：适用于空格或者标点分割的关键字，类型数据能被索引和搜索但是不支持短语搜索（为了节省空间）</span><br><span class="line">STORED：与文档存储在一起而不是与索引，该类型的数据不能被索引和搜索</span><br></pre></td></tr></table></figure>
+
+
+
+<p>schema对象创建完成后，可以使用 create_in 函数创建索引：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os.path</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> whoosh.index <span class="keyword">import</span> create_in</span><br><span class="line"><span class="keyword">from</span> whoosh.fields <span class="keyword">import</span> Schema, STORED, ID, KEYWORD, TEXT</span><br><span class="line"></span><br><span class="line">schema = Schema(title=TEXT(stored=<span class="literal">True</span>), content=TEXT,</span><br><span class="line">                path=ID(stored=<span class="literal">True</span>), tags=KEYWORD, </span><br><span class="line">                icon=STORED)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(<span class="string">"index"</span>):</span><br><span class="line">    os.mkdir(<span class="string">"index"</span>)</span><br><span class="line">ix = create_in(<span class="string">"index"</span>, schema)</span><br></pre></td></tr></table></figure>
+
+<p>创建 index 时，会创建一个存储对象来保存 index 信息。</p>
+<p>通常，存储对象都会是 FileStorage，一种使用文件来存储索引的存储介质。</p>
+<p>创建索引后，也可以通过 open_dir() 来打开索引</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">from whoosh.index import open_dir</span><br><span class="line"></span><br><span class="line">ix = open_dir(&quot;index&quot;)</span><br></pre></td></tr></table></figure>
+
+
+
+<p>创建好 index 对象后，我们可以往里面添加文档。writer() 方法会返回一个 IndexWriter 对象，使用它可以向 index 中添加文档：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">writer = ix.writer()</span><br><span class="line">writer.add_document(title=<span class="string">u"My document"</span>, content=<span class="string">u"This is my document!"</span>,</span><br><span class="line">                    path=<span class="string">u"/a"</span>, tags=<span class="string">u"first short"</span>, icon=<span class="string">u"/icons/star.png"</span>)</span><br><span class="line">writer.add_document(title=<span class="string">u"Second try"</span>, content=<span class="string">u"This is the second example."</span>,</span><br><span class="line">                    path=<span class="string">u"/b"</span>, tags=<span class="string">u"second short"</span>, icon=<span class="string">u"/icons/sheep.png"</span>)</span><br><span class="line">writer.add_document(title=<span class="string">u"Third time's the charm"</span>, content=<span class="string">u"Examples are many."</span>,</span><br><span class="line">                    path=<span class="string">u"/c"</span>, tags=<span class="string">u"short"</span>, icon=<span class="string">u"/icons/book.png"</span>)</span><br><span class="line">writer.commit()  <span class="comment"># 保存文档到索引中</span></span><br></pre></td></tr></table></figure>
+
+<p>添加文档时，没有必要对所有字段都添加值；能被索引的 TEXT 字段必须要传入一个 unicode 类型的值，仅仅被存储而不用来索引的字段可以传入任何可被序列化的对象。</p>
+<p>文档存储到 index 后，就可以进行索引了，索引之前首先要创建一个 search 对象：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">searcher = ix.searcher()</span><br></pre></td></tr></table></figure>
+
+<p>可以使用 with 语句，以便使 search 对象自动关闭，也可以使用 try … finally：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> ix.searcher() <span class="keyword">as</span> searcher:</span><br><span class="line">    ...</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    searcher = ix.searcher()</span><br><span class="line">    ...</span><br><span class="line"><span class="keyword">finally</span>:</span><br><span class="line">    searcher.close()</span><br></pre></td></tr></table></figure>
+
+
+
+<p>search 对象的 search() 方法需要传入一个 Query 对象。可以直接钩爪一个 Query 对象，也可以使用QueryParse构造一个 Query 对象。将 Query 对象传入 search() 方法中，可以得到一个 Results 对象。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> whoosh.query <span class="keyword">import</span> *</span><br><span class="line">myquery = And([Term(<span class="string">"content"</span>, <span class="string">u"apple"</span>), Term(<span class="string">"content"</span>, <span class="string">"bear"</span>)])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 或者使用</span></span><br><span class="line"><span class="keyword">from</span> whoosh.qparser <span class="keyword">import</span> QueryParser</span><br><span class="line">parser = QueryParser(<span class="string">"content"</span>, ix.schema)</span><br><span class="line">myquery = parser.parse(querystring)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">results = searcher.search(myquery)</span><br></pre></td></tr></table></figure>
+
+<p>以上就是 whoosh 做搜索的基本步骤。</p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/wyzane" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="mailto:wyzane1207@gmail.com" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2019 wyzane<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>
