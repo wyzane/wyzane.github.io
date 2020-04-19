@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!--Description-->
+
+    
+
+    
+        <meta name="description" content="今天主要介绍下 nginx 的安装与简单使用。
+安装123456789101112131415161718192021222324252627282930313233343536373839404142434445464748安装步骤如下（ubuntu18.04）：1. 安装依赖项：	sudo ap"/>
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="wyzane"/>
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="nginx的安装与使用(一)"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="今天主要介绍下 nginx 的安装与简单使用。
+安装123456789101112131415161718192021222324252627282930313233343536373839404142434445464748安装步骤如下（ubuntu18.04）：1. 安装依赖项：	sudo ap"/>
+    
+
+    <!--Open Graph Site Name-->
+        <meta property="og:site_name" content="wyzane&#39;s skill blog"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article"/>
+    
+
+    <!--Page Cover-->
+    
+    
+        <meta property="og:image" content="http://wyzane.cc/img/home7.jpg"/>
+    
+
+        <meta name="twitter:card" content="summary_large_image"/>
+
+    
+
+    
+        <meta name="twitter:image" content="http://wyzane.cc/img/home7.jpg"/>
+    
+
+    <!-- Title -->
+    
+    <title>nginx的安装与使用(一) - wyzane&#39;s skill blog</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../../../../css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css"/>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet"/>
+
+    <!-- Google Analytics -->
+    
+
+
+    <!-- favicon -->
+    
+
+</head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">share and progress!</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="../../../../index.html">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="../../../../archives">
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="http://www.wyzane.com" target="_blank" rel="noopener">
+                            
+                                OldBlog
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="https://github.com/wyzane" target="_blank" rel="noopener">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('/img/home7.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>nginx的安装与使用(一)</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2020-04-19
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p>今天主要介绍下 nginx 的安装与简单使用。</p>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">安装步骤如下（ubuntu18.04）：</span><br><span class="line">1. 安装依赖项：</span><br><span class="line">	sudo apt-get update</span><br><span class="line">	sudo apt-get install build-essential zlib1g-dev libpcre3 libpcre3-dev libssl-dev    			libxml2-dev libgeoip-dev libgoogle-perftools-dev libperl-dev libtool</span><br><span class="line">	sudo apt-get install openssl</span><br><span class="line">2. 下载 nginx 源码包并解压</span><br><span class="line">	wget http://nginx.org/download/nginx-1.16.1.tar.gz</span><br><span class="line">3. 执行安装命令 （ngx_http_proxy_connect_module是一个正向代理的模块，如果有需求，还可以安装其他模块）</span><br><span class="line">	./configure --prefix=/usr/local/nginx --with-http_ssl_module --with-stream </span><br><span class="line">	 --add-module=/home/wyzane/softwares/ngx_http_proxy_connect_module</span><br><span class="line">	sudo make</span><br><span class="line">	sudo make install</span><br><span class="line">安装完成后，就可以启动了</span><br><span class="line"></span><br><span class="line">4. 创建软链接</span><br><span class="line">	sudo ln -s /usr/local/nginx/sbin/nginx /usr/local/bin</span><br><span class="line">5. 查看nginx是否启动成功</span><br><span class="line">	浏览器中输入：http://127.0.0.1:8081/</span><br><span class="line">	出现nginx的欢迎页即表明nginx启动成功</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">安装步骤如下（centos8.1）：</span><br><span class="line">1. 安装依赖</span><br><span class="line">	yum update</span><br><span class="line">	yum install gcc-c++</span><br><span class="line">	yum install -y pcre pcre-devel</span><br><span class="line">	yum install -y zlib zlib-devel</span><br><span class="line">	yum install -y openssl openssl-devel</span><br><span class="line">2. 下载 nginx 源码包并解压</span><br><span class="line">	wget http://nginx.org/download/nginx-1.16.1.tar.gz</span><br><span class="line">3. 安装patch命令（对于nginx-1.16，ngx_http_proxy_connect_module需要打补丁）</span><br><span class="line">	yum -y install patch</span><br><span class="line">4. 给ngx_http_proxy_connect_module打补丁</span><br><span class="line">	patch -p1 &lt; /home/wz/softwares/ngx_http_proxy_connect_module/patch/proxy_connect_rewrite_101504.patch</span><br><span class="line">5. 执行命令</span><br><span class="line">	./configure --prefix=/usr/local/nginx --with-http_ssl_module --with-stream </span><br><span class="line">		--add-module=/home/wz/softwares/ngx_http_proxy_connect_module</span><br><span class="line">	make</span><br><span class="line">	make install</span><br><span class="line">	</span><br><span class="line">	make clean：重新编译安装</span><br><span class="line">6. 创建软链接</span><br><span class="line">	sudo ln -s /usr/local/nginx/sbin/nginx /usr/local/bin</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">可能的问题：</span><br><span class="line">1）centos编译安装Nginx提示 bash: make: command not found</span><br><span class="line">	解决：yum -y install gcc automake autoconf libtool make</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ubuntu上安装net工具：</span><br><span class="line">sudo apt-get install net-tools</span><br><span class="line">安装后可以使用 netstat 命令</span><br></pre></td></tr></table></figure>
+
+
+
+<p>下面的操作都是在 ubuntu18.04 上完成的。</p>
+<h1 id="设置系统服务"><a href="#设置系统服务" class="headerlink" title="设置系统服务"></a>设置系统服务</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">将nginx添加到系统服务的步骤如下：</span><br><span class="line">1. 新增nginx.service文件</span><br><span class="line">	sudo vim /lib/systemd/system/nginx.service</span><br><span class="line">2. 添加如下内容：</span><br><span class="line">	[Unit]</span><br><span class="line">    Description=nginx - high performance web server</span><br><span class="line">    After=network.target remote-fs.target nss-lookup.target</span><br><span class="line"></span><br><span class="line">    [Service]</span><br><span class="line">    Type=forking</span><br><span class="line">    ExecStart=/usr/local/nginx/sbin/nginx -c /usr/local/nginx/conf/nginx.conf</span><br><span class="line">    ExecReload=/usr/local/nginx/sbin/nginx -s reload</span><br><span class="line">    ExecStop=/usr/local/nginx/sbin/nginx -s stop</span><br><span class="line"></span><br><span class="line">    [Install]</span><br><span class="line">    WantedBy=multi-user.target</span><br><span class="line">    </span><br><span class="line">    配置说明：</span><br><span class="line">        [Unit]部分</span><br><span class="line">        Description:描述服务</span><br><span class="line">        After:依赖，当依赖的服务启动之后再启动自定义的服务</span><br><span class="line"></span><br><span class="line">        [Service]部分</span><br><span class="line">        Type=forking是后台运行的形式</span><br><span class="line">        ExecStart为服务的具体运行命令(需要根据路径适配)</span><br><span class="line">        ExecReload为重启命令(需要根据路径适配)</span><br><span class="line">        ExecStop为停止命令(需要根据路径适配)</span><br><span class="line">        PrivateTmp=True表示给服务分配独立的临时空间</span><br><span class="line">        </span><br><span class="line">        [Install]部分</span><br><span class="line">		服务安装的相关设置，可设置为多用户</span><br><span class="line">3. 配置完成后，常用命令如下：</span><br><span class="line">	# 设置了自启动后，任意目录下执行</span><br><span class="line">    systemctl enable nginx.service</span><br><span class="line">    # 启动nginx服务</span><br><span class="line">    systemctl start nginx.service</span><br><span class="line">    # 设置开机自动启动</span><br><span class="line">    systemctl enable nginx.service</span><br><span class="line">    # 停止开机自动启动</span><br><span class="line">    systemctl disable nginx.service</span><br><span class="line">    # 查看状态</span><br><span class="line">    systemctl status nginx.service</span><br><span class="line">    # 重启服务</span><br><span class="line">    systemctl restart nginx.service</span><br><span class="line">    # 查看所有服务</span><br><span class="line">    systemctl list-units --type=service</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">-c: 指定开启nginx时使用的配置文件</span><br><span class="line"></span><br><span class="line">nginx -s: 发送信号</span><br><span class="line">nginx -s stop</span><br><span class="line">nginx -s quit  优雅的停止服务</span><br><span class="line">nginx -t: 修改配置文件后，先测试</span><br><span class="line">nginx -v：查看nginx版本</span><br><span class="line"></span><br><span class="line">./nginx -s reload 不停止Nginx服务的方式重启nginx</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">解压后nginx的目录结构如下：</span><br><span class="line">auto: 文件夹</span><br><span class="line">CHANGES: 文件，介绍nginx每个版本的特性</span><br><span class="line">conf: 配置文件所在文件夹</span><br><span class="line">configure: 脚本，在编译前执行，生成中间文件</span><br><span class="line">contrib:</span><br><span class="line">html: 提供两个标准html文件: 50x.html,index.html</span><br><span class="line">man: linux对nginx的帮助文件  man ./nginx.8</span><br><span class="line">src: nginx的源代码</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="热部署方式"><a href="#热部署方式" class="headerlink" title="热部署方式"></a>热部署方式</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">热部署nginx：不停止当前nginx的情况下升级nginx，只需要更换nginx二进制文件</span><br><span class="line">步骤如下：</span><br><span class="line">1.备份当前nginx二进制文件： cp nginx nginx.old</span><br><span class="line">2.用编译后的最新版本的nginx二进制文件替换掉现在的nginx文件</span><br><span class="line">3.给当前nginx的master进程发送信号：kill -USR2 pid</span><br><span class="line">	此时会使用新的二进制文件生成新的master进程，老的进程也在使用，两者会平滑的过度；老的进程不会再监听80或者443端口</span><br><span class="line">4.向老的master进程发送信号，优雅的关闭所有进程：kill -WINCH pid。此时老的master进程已经没有了子进程。</span><br><span class="line">	若再想恢复老的版本，可以向master进程发起reload命令（用于做版本回退）</span><br><span class="line"></span><br><span class="line">日志切割：</span><br><span class="line">1.备份原先的日志文件 mv old.log bak.log</span><br><span class="line">2.重新生成日志文件 ./nginx -s reopen  会重新生成一个old.log日志文件</span><br><span class="line">	（可以每天或者每周定时执行日志切割）</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="搭建静态资源服务器"><a href="#搭建静态资源服务器" class="headerlink" title="搭建静态资源服务器"></a>搭建静态资源服务器</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">搭建静态资源服务器时，可以将下面的内容放在http块下：</span><br><span class="line"># 使用了很多变量，日志格式命名，便于区分不同域名下的日志格式</span><br><span class="line">log_format  main  &apos;$remote_addr - $remote_user [$time_local] &quot;$request&quot; &apos;</span><br><span class="line">                  &apos;$status $body_bytes_sent &quot;$http_referer&quot; &apos;</span><br><span class="line">                  &apos;&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;&apos;;</span><br><span class="line"></span><br><span class="line">access_log  logs/access.log  main;</span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">        listen       8081;</span><br><span class="line">        server_name  192.168.0.105;</span><br><span class="line"></span><br><span class="line">        #charset koi8-r;</span><br><span class="line"></span><br><span class="line">        index  index.html index.htm;</span><br><span class="line">        access_log  logs/host.access.log  main;</span><br><span class="line"></span><br><span class="line">        location / &#123;</span><br><span class="line">            alias  docs/;</span><br><span class="line">            autoindex  on;  # 显示docs目录结构</span><br><span class="line">        	set $limit_rate 1k; # limit_rate是内置变量，用于限制访问速度，每秒传输多少字节到浏览器中 </span><br><span class="line">            # index  index.html index.htm;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        #error_page  404              /404.html;</span><br><span class="line">        error_page   500 502 503 504  /50x.html;</span><br><span class="line">        location = /50x.html &#123;</span><br><span class="line">            root   html;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">上面的docs就表示静态资源文件夹</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/wyzane" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="mailto:wyzane1207@gmail.com" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2020 wyzane<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

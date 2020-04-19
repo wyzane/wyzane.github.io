@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!--Description-->
+
+    
+
+    
+        <meta name="description" content="今天介绍下如何使用 nginx、apache 和 squid 搭建正向代理服务器。下面的操作都是在 centos8.1 上完成的。
+nginx使用 nginx 正向代理时，需要先把 ngx_http_proxy_connect_module 模块编译进 nginx 中，编译方式可参考上一篇文章。
+这"/>
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="wyzane"/>
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="使用三种方式搭建正向代理服务器"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="今天介绍下如何使用 nginx、apache 和 squid 搭建正向代理服务器。下面的操作都是在 centos8.1 上完成的。
+nginx使用 nginx 正向代理时，需要先把 ngx_http_proxy_connect_module 模块编译进 nginx 中，编译方式可参考上一篇文章。
+这"/>
+    
+
+    <!--Open Graph Site Name-->
+        <meta property="og:site_name" content="wyzane&#39;s skill blog"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article"/>
+    
+
+    <!--Page Cover-->
+    
+    
+        <meta property="og:image" content="http://wyzane.cc/img/home7.jpg"/>
+    
+
+        <meta name="twitter:card" content="summary_large_image"/>
+
+    
+
+    
+        <meta name="twitter:image" content="http://wyzane.cc/img/home7.jpg"/>
+    
+
+    <!-- Title -->
+    
+    <title>使用三种方式搭建正向代理服务器 - wyzane&#39;s skill blog</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../../../../css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css"/>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet"/>
+
+    <!-- Google Analytics -->
+    
+
+
+    <!-- favicon -->
+    
+
+</head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">share and progress!</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="../../../../index.html">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="../../../../archives">
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="http://www.wyzane.com" target="_blank" rel="noopener">
+                            
+                                OldBlog
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="https://github.com/wyzane" target="_blank" rel="noopener">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('/img/home7.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>使用三种方式搭建正向代理服务器</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2020-04-19
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p>今天介绍下如何使用 nginx、apache 和 squid 搭建正向代理服务器。下面的操作都是在 centos8.1 上完成的。</p>
+<h1 id="nginx"><a href="#nginx" class="headerlink" title="nginx"></a>nginx</h1><p>使用 nginx 正向代理时，需要先把 ngx_http_proxy_connect_module 模块编译进 nginx 中，编译方式可参考上一篇文章。</p>
+<p>这里我搭建了一个 RSSHub 服务用于发起请求，RSSHub 服务器上的代理环境变量配置如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">export PROXY_PROTOCOL=http</span><br><span class="line">export PROXY_HOST=****</span><br><span class="line">export PROXY_PORT=8090</span><br></pre></td></tr></table></figure>
+
+<p>nginx正向代理搭建成功后，在本机请求 RSSHub 服务时，会通过代理向目标网址发送请求。</p>
+<p>nginx 配置正向代理时，将下面的配置加到 nginx.conf 中即可：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">#user  nobody;</span><br><span class="line">worker_processes  1;</span><br><span class="line"></span><br><span class="line">#error_log  logs/error.log;</span><br><span class="line">#error_log  logs/error.log  notice;</span><br><span class="line">#error_log  logs/error.log  info;</span><br><span class="line"></span><br><span class="line">#pid        logs/nginx.pid;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">events &#123;</span><br><span class="line">    worker_connections  1024;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">http &#123;</span><br><span class="line">    include       mime.types;</span><br><span class="line">    default_type  application/octet-stream;</span><br><span class="line"></span><br><span class="line">    #log_format  main  &apos;$remote_addr - $remote_user [$time_local] &quot;$request&quot; &apos;</span><br><span class="line">    #                  &apos;$status $body_bytes_sent &quot;$http_referer&quot; &apos;</span><br><span class="line">    #                  &apos;&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;&apos;;</span><br><span class="line"></span><br><span class="line">    #access_log  logs/access.log  main;</span><br><span class="line"></span><br><span class="line">    sendfile        on;</span><br><span class="line">    #tcp_nopush     on;</span><br><span class="line"></span><br><span class="line">    #keepalive_timeout  0;</span><br><span class="line">    keepalive_timeout  65;</span><br><span class="line"></span><br><span class="line">    #gzip  on;</span><br><span class="line"></span><br><span class="line">    server &#123;</span><br><span class="line">        listen 8090;                   #监听端口</span><br><span class="line">        resolver 8.8.8.8;      #dns解析地址</span><br><span class="line">        server_name  _;</span><br><span class="line">        proxy_connect;</span><br><span class="line">        proxy_connect_allow 443 563;</span><br><span class="line">        # proxy_connect_connect_timeout 10s;</span><br><span class="line">        # proxy_connect_read_timeout 10s;</span><br><span class="line">        # proxy_connect_send_timeout 10s;</span><br><span class="line">      </span><br><span class="line">        location / &#123;</span><br><span class="line">             proxy_pass $scheme://$host$request_uri;</span><br><span class="line">             proxy_set_header HOST $http_host;</span><br><span class="line">             proxy_buffers 256 4k;</span><br><span class="line">             proxy_max_temp_file_size 0k;</span><br><span class="line">             proxy_connect_timeout 30;</span><br><span class="line">             proxy_send_timeout 60;</span><br><span class="line">             proxy_read_timeout 60;</span><br><span class="line">             #proxy_next_upstream error timeout invalid_header http_502;</span><br><span class="line">            #root   html;</span><br><span class="line">            #            #index  index.html index.htm;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        error_page   500 502 503 504  /50x.html;</span><br><span class="line">        location = /50x.html &#123;</span><br><span class="line">            root   html;</span><br><span class="line">        &#125;</span><br><span class="line">                                                                     </span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面的 location 块中，还有很多其他的命令，感兴趣的小伙伴可以查阅相关文档。</p>
+<p>ngx_http_proxy_connect_module 模块的 github 地址为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://www.github.com/chobits/ngx_http_proxy_connect_module</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="apache"><a href="#apache" class="headerlink" title="apache"></a>apache</h1><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">安装：</span><br><span class="line">yum install -y httpd</span><br><span class="line"></span><br><span class="line">启动：</span><br><span class="line">systemctl enable httpd</span><br><span class="line">systemctl start httpd</span><br><span class="line">systemctl restart httpd</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">修改文件 /etc/httpd/conf.modules.d/00-proxy.conf，最终内容如下：</span><br><span class="line"># This file configures all the proxy modules:</span><br><span class="line">LoadModule proxy_module modules/mod_proxy.so</span><br><span class="line">LoadModule lbmethod_bybusyness_module modules/mod_lbmethod_bybusyness.so</span><br><span class="line">LoadModule lbmethod_byrequests_module modules/mod_lbmethod_byrequests.so</span><br><span class="line">LoadModule lbmethod_bytraffic_module modules/mod_lbmethod_bytraffic.so</span><br><span class="line">LoadModule lbmethod_heartbeat_module modules/mod_lbmethod_heartbeat.so</span><br><span class="line">LoadModule proxy_ajp_module modules/mod_proxy_ajp.so</span><br><span class="line">LoadModule proxy_balancer_module modules/mod_proxy_balancer.so</span><br><span class="line">LoadModule proxy_connect_module modules/mod_proxy_connect.so</span><br><span class="line">LoadModule proxy_express_module modules/mod_proxy_express.so</span><br><span class="line">LoadModule proxy_fcgi_module modules/mod_proxy_fcgi.so</span><br><span class="line">LoadModule proxy_fdpass_module modules/mod_proxy_fdpass.so</span><br><span class="line">LoadModule proxy_ftp_module modules/mod_proxy_ftp.so</span><br><span class="line">LoadModule proxy_http_module modules/mod_proxy_http.so</span><br><span class="line">LoadModule proxy_hcheck_module modules/mod_proxy_hcheck.so</span><br><span class="line">LoadModule proxy_scgi_module modules/mod_proxy_scgi.so</span><br><span class="line">LoadModule proxy_uwsgi_module modules/mod_proxy_uwsgi.so</span><br><span class="line">LoadModule proxy_wstunnel_module modules/mod_proxy_wstunnel.so</span><br><span class="line"></span><br><span class="line">ProxyRequests On</span><br><span class="line">ProxyVia On</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;Proxy &quot;*&quot;&gt;</span><br><span class="line">&lt;/Proxy&gt;</span><br></pre></td></tr></table></figure>
+
+<p>配置完成后，可以执行 systemctl start httpd 命令启动 apache 服务。</p>
+<h2 id="可能遇到的问题"><a href="#可能遇到的问题" class="headerlink" title="可能遇到的问题"></a>可能遇到的问题</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[Sun Apr 19 02:20:38.711238 2020] [proxy:error] [pid 23913:tid 140212453746432] (13)Permission denied: [client 113.104.182.232:38242] AH00939: CONNECT: attempt to connect to 47.89.66.201:443 (www.jianshu.com) failed</span><br></pre></td></tr></table></figure>
+
+<p>启动 apache 服务后，发起请求时，若代理服务器出现上面的错误，则可能与 centos 的 SELinux 有关，可以执行如下命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">setsebool -P httpd_can_network_connect=1</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="squid"><a href="#squid" class="headerlink" title="squid"></a>squid</h1><p>squid是一个高性能的代理缓存服务器，squid支持FTP、gopher、HTTPS和HTTP协议。我们也可以使用它来搭建代理服务器。</p>
+<p>搭建步骤如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">安装squid：</span><br><span class="line">yum install squid -y </span><br><span class="line"></span><br><span class="line">配置：</span><br><span class="line">修改文件 /etc/squid/squid.conf ，添加以下内容：</span><br><span class="line">acl local src 192.168.5.0/24   	   //允许192.168.5.0/24网段内所有客户机访问代理服务器</span><br><span class="line">http_access allow local</span><br><span class="line"></span><br><span class="line">启动：驱动squid的服务</span><br><span class="line">systemctl start squid </span><br><span class="line"></span><br><span class="line">查看日志：</span><br><span class="line">tail -f /var/log/squid/access.log</span><br><span class="line">tail -f /var/log/squid/error.log</span><br></pre></td></tr></table></figure>
+
+
+
+<p>上面的代理服务搭建完成并启动后，可以在本地访问  RSSHub 服务，通过查看日志来确认代理服务是否搭建成功。</p>
+<p>上面简单介绍了正向代理服务器的搭建，感兴趣的小伙伴可以进一步了解。</p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/wyzane" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="mailto:wyzane1207@gmail.com" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2020 wyzane<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>
