@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!--Description-->
+
+    
+
+    
+        <meta name="description" content="django 中提供了信号机制，它类似于数据库中的触发器，也类似于编程中的回调函数。
+在 signals 中，我们可以自定义需要执行的函数，当某个动作（如model对象被保存）发生时，可以触发自定义函数的执行。
+django中有内置的信号，我们也可以自定义信号。django中有以下常用内置信号：
+1"/>
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="wyzane"/>
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="django开发中signals信号的使用"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="django 中提供了信号机制，它类似于数据库中的触发器，也类似于编程中的回调函数。
+在 signals 中，我们可以自定义需要执行的函数，当某个动作（如model对象被保存）发生时，可以触发自定义函数的执行。
+django中有内置的信号，我们也可以自定义信号。django中有以下常用内置信号：
+1"/>
+    
+
+    <!--Open Graph Site Name-->
+        <meta property="og:site_name" content="wyzane&#39;s skill blog"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article"/>
+    
+
+    <!--Page Cover-->
+    
+    
+        <meta property="og:image" content="http://wyzane.cc/img/home7.jpg"/>
+    
+
+        <meta name="twitter:card" content="summary_large_image"/>
+
+    
+
+    
+        <meta name="twitter:image" content="http://wyzane.cc/img/home7.jpg"/>
+    
+
+    <!-- Title -->
+    
+    <title>django开发中signals信号的使用 - wyzane&#39;s skill blog</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../../../../css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css"/>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet"/>
+
+    <!-- Google Analytics -->
+    
+
+
+    <!-- favicon -->
+    
+
+</head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">share and progress!</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="../../../../index.html">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="../../../../archives">
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="http://www.wyzane.com" target="_blank" rel="noopener">
+                            
+                                OldBlog
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="https://github.com/wyzane" target="_blank" rel="noopener">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('/img/home7.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>django开发中signals信号的使用</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2020-05-05
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p>django 中提供了信号机制，它类似于数据库中的触发器，也类似于编程中的回调函数。</p>
+<p>在 signals 中，我们可以自定义需要执行的函数，当某个动作（如model对象被保存）发生时，可以触发自定义函数的执行。</p>
+<p>django中有内置的信号，我们也可以自定义信号。<br>django中有以下常用内置信号：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">django.db.models.signals.pre_save 在某个Model保存之前调用</span><br><span class="line">django.db.models.signals.post_save 在某个Model保存之后调用</span><br><span class="line">django.db.models.signals.pre_delete 在某个Model删除之前调用</span><br><span class="line">django.db.models.signals.post_delete 在某个Model删除之后调用</span><br><span class="line">django.core.signals.request_started 在建立Http请求时发送</span><br><span class="line">django.core.signals.request_finished 在关闭Http请求时发送</span><br></pre></td></tr></table></figure>
+
+<p>其他内置信号可以查看官方文档：<br><a href="https://docs.djangoproject.com/en/2.1/topics/signals/" target="_blank" rel="noopener">https://docs.djangoproject.com/en/2.1/topics/signals/</a></p>
+<p>下面介绍下内置信号和自定义信号的使用。</p>
+<h1 id="内置信号"><a href="#内置信号" class="headerlink" title="内置信号"></a>内置信号</h1><p>下面举一个post_save的例子，test01 是 app 名称。</p>
+<p>首先在 test01/signals/handler.py 中定义signal函数：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.db.models.signals <span class="keyword">import</span> post_save</span><br><span class="line"><span class="keyword">from</span> django.dispatch <span class="keyword">import</span> receiver</span><br><span class="line"><span class="keyword">from</span> ..models <span class="keyword">import</span> StudentModel</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@receiver(post_save)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">save_signal</span><span class="params">(sender, **kwargs)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    所有Model被保存后，都会触发该函数的执行</span></span><br><span class="line"><span class="string">    :param sender:</span></span><br><span class="line"><span class="string">    :param kwargs:</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    print(<span class="string">"save_signal sender:"</span>, sender)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># sender用于指定哪个model被保存后触发该函数的执行</span></span><br><span class="line"><span class="meta">@receiver(post_save, sender=StudentModel)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">student_signal</span><span class="params">(sender, **kwargs)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    StudentModel被保存后，触发该函数的执行</span></span><br><span class="line"><span class="string">    :param sender:</span></span><br><span class="line"><span class="string">    :param kwargs:</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    print(<span class="string">"student_signal sender:"</span>, sender)</span><br></pre></td></tr></table></figure>
+
+<p>在 test01/views.py 中定义视图：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> rest_framework.views <span class="keyword">import</span> APIView</span><br><span class="line"><span class="keyword">from</span> rest_framework.response <span class="keyword">import</span> Response</span><br><span class="line"><span class="keyword">from</span> .models <span class="keyword">import</span> UserModel, StudentModel</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserView</span><span class="params">(APIView)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">post</span><span class="params">(self, request)</span>:</span></span><br><span class="line">        print(<span class="string">"-- user view --"</span>)</span><br><span class="line">        UserModel.objects.create(username=<span class="string">"wyzane"</span>, password=<span class="string">"123456"</span>)</span><br><span class="line">        <span class="keyword">return</span> Response(<span class="string">"OK"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StudentView</span><span class="params">(APIView)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">post</span><span class="params">(self, request)</span>:</span></span><br><span class="line">        print(<span class="string">"-- student view --"</span>)</span><br><span class="line">        StudentModel.objects.create(name=<span class="string">"wyzane"</span>, age=<span class="number">16</span>)</span><br><span class="line">        <span class="keyword">return</span> Response(<span class="string">"OK"</span>)</span><br></pre></td></tr></table></figure>
+
+<p>配置 test01/apps.py：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.apps <span class="keyword">import</span> AppConfig</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test01AppConfig</span><span class="params">(AppConfig)</span>:</span></span><br><span class="line">    name = <span class="string">"test01"</span></span><br><span class="line"></span><br><span class="line">    print(<span class="string">"-- Test01AppConfig --"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">ready</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">from</span> .signals <span class="keyword">import</span> handler</span><br></pre></td></tr></table></figure>
+
+<p>配置 <strong>test01/</strong>init.py：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">default_app_config = <span class="string">'test01.apps.Test01AppConfig'</span></span><br></pre></td></tr></table></figure>
+
+<p>此时在postman中分别请求下面两个url：<br><a href="http://127.0.0.1:8000/test01/user/" target="_blank" rel="noopener">http://127.0.0.1:8000/test01/user/</a><br><a href="http://127.0.0.1:8000/test01/student/" target="_blank" rel="noopener">http://127.0.0.1:8000/test01/student/</a><br>打印的结果分别是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">-- user view --</span><br><span class="line">save_signal sender: &amp;lt;class &apos;test01.models.UserModel&apos;;</span><br><span class="line"></span><br><span class="line">-- student view --</span><br><span class="line">save_signal sender: &amp;lt;class &apos;test01.models.StudentModel&apos;;</span><br><span class="line">student_signal sender: &amp;lt;class &apos;test01.models.StudentModel&apos;;</span><br></pre></td></tr></table></figure>
+
+<p>通过上面的结果，我们也可以看出信号中使用和不使用sender参数区别。</p>
+<h1 id="自定义信号"><a href="#自定义信号" class="headerlink" title="自定义信号"></a>自定义信号</h1><p>下面介绍下自定义信号的使用。</p>
+<p>定义信号 test01/signals/signals.py：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> django.dispatch</span><br><span class="line"></span><br><span class="line">signal01 = django.dispatch.Signal(providing_args=[<span class="string">"p1"</span>, <span class="string">"p2"</span>])</span><br></pre></td></tr></table></figure>
+
+<p>在视图中触发自定义信号 test01/views.py：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> rest_framework.views <span class="keyword">import</span> APIView</span><br><span class="line"><span class="keyword">from</span> rest_framework.response <span class="keyword">import</span> Response</span><br><span class="line"><span class="keyword">from</span> .signals.signals <span class="keyword">import</span> signal01</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SignalView</span><span class="params">(APIView)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">post</span><span class="params">(self, request)</span>:</span></span><br><span class="line">        <span class="comment"># 触发自定义信号</span></span><br><span class="line">        signal01.send(sender=<span class="string">"signal_view"</span>, p1=<span class="string">"wyzane"</span>, p2=<span class="number">18</span>)</span><br><span class="line">        <span class="keyword">return</span> Response(<span class="string">"OK"</span>)</span><br></pre></td></tr></table></figure>
+
+<p>编写处理函数，即收到信号后要做哪些操作 test01/signals/handler.py：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.dispatch <span class="keyword">import</span> receiver</span><br><span class="line"><span class="keyword">from</span> .signals <span class="keyword">import</span> signal01</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@receiver(signal01)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">my_signal</span><span class="params">(sender, **kwargs)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    信号触发后执行的操作</span></span><br><span class="line"><span class="string">    :param sender: </span></span><br><span class="line"><span class="string">    :param kwargs: </span></span><br><span class="line"><span class="string">    :return: </span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    print(<span class="string">"my signal:"</span>, sender, kwargs)</span><br></pre></td></tr></table></figure>
+
+<p>下一步就是配置，这里的配置与内置信号中的配置相同，就不介绍了。</p>
+<p>配置完成后，请求下面的url<br><a href="http://127.0.0.1:8000/test01/signal/" target="_blank" rel="noopener">http://127.0.0.1:8000/test01/signal/</a><br>看到打印的结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">my signal: signal_view &#123;‘signal’: &lt;django.dispatch.dispatcher.Signal object at 0x000001F57FCA1160&gt;, ‘p1’: ‘wyzane’, ‘p2’: 18&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>上面的配置中使用了 AppConfig，AppConfig 是用来设置 django中 每个 app 属性的，上面的配置中定义了一个Test01AppConfig 类来继承 AppConfig，并在 init.py 中使用 default_app_config 来加载这个类。<br>重写在ready方法中的代码会在django运行的时候执行。<br>感兴趣的小伙伴可以看下官方文档的介绍：<br><a href="https://docs.djangoproject.com/en/2.1/ref/applications/。" target="_blank" rel="noopener">https://docs.djangoproject.com/en/2.1/ref/applications/。</a></p>
+<p>signals信号的知识就介绍到这里。</p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/wyzane" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="mailto:wyzane1207@gmail.com" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2020 wyzane<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>
