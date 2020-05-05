@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!--Description-->
+
+    
+
+    
+        <meta name="description" content="今天介绍下在django中使用channels实现websocket的步骤。
+首先介绍下channels。channels官方文档连接如下：https://channels.readthedocs.io/en/latest/
+channels这个第三方包可以帮助django在http之上扩展很多功能"/>
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="wyzane"/>
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="django开发中channels的使用"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="今天介绍下在django中使用channels实现websocket的步骤。
+首先介绍下channels。channels官方文档连接如下：https://channels.readthedocs.io/en/latest/
+channels这个第三方包可以帮助django在http之上扩展很多功能"/>
+    
+
+    <!--Open Graph Site Name-->
+        <meta property="og:site_name" content="wyzane&#39;s skill blog"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article"/>
+    
+
+    <!--Page Cover-->
+    
+    
+        <meta property="og:image" content="http://wyzane.cc/img/home7.jpg"/>
+    
+
+        <meta name="twitter:card" content="summary_large_image"/>
+
+    
+
+    
+        <meta name="twitter:image" content="http://wyzane.cc/img/home7.jpg"/>
+    
+
+    <!-- Title -->
+    
+    <title>django开发中channels的使用 - wyzane&#39;s skill blog</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../../../../css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css"/>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet"/>
+
+    <!-- Google Analytics -->
+    
+
+
+    <!-- favicon -->
+    
+
+</head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">share and progress!</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="../../../../index.html">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="../../../../archives">
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="http://www.wyzane.com" target="_blank" rel="noopener">
+                            
+                                OldBlog
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="https://github.com/wyzane" target="_blank" rel="noopener">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('/img/home7.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>django开发中channels的使用</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2020-05-05
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p>今天介绍下在django中使用channels实现websocket的步骤。</p>
+<p>首先介绍下channels。<br>channels官方文档连接如下：<br><a href="https://channels.readthedocs.io/en/latest/" target="_blank" rel="noopener">https://channels.readthedocs.io/en/latest/</a></p>
+<p>channels这个第三方包可以帮助django在http之上扩展很多功能，可以使django实现websocket，聊天协议等。channels可以使django运行在同步模式下，但是异步的处理connections和socket。</p>
+<p>下面介绍在django中，使用channels实现websocket功能。下面DjangoChannel是项目名称，test01是app名称。</p>
+<h1 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h1><p>python3.6 channels2.1.7 channels-redis2.3.3 django2.0.5 drf3.9.2</p>
+<h1 id="前端页面"><a href="#前端页面" class="headerlink" title="前端页面"></a>前端页面</h1><p>index.html：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>cchannels实现websocket<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"http://code.jquery.com/jquery-1.11.1.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="actionscript"><span class="comment">//&lt;![CDATA[</span></span></span><br><span class="line"><span class="javascript">    $(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">        $(<span class="string">'#sendMsg'</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="actionscript">            <span class="keyword">var</span> socket = <span class="keyword">new</span> WebSocket(<span class="string">"ws://127.0.0.1:8000/ws/status/1"</span>)</span></span><br><span class="line"><span class="actionscript">            socket.onopen = <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</span></span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(<span class="string">'WebSocket open'</span>) <span class="comment">//成功连接上Websocket</span></span></span><br><span class="line"><span class="javascript">                socket.send($(<span class="string">'#msg'</span>).val())  <span class="comment">//发送数据到服务端</span></span></span><br><span class="line">            &#125;</span><br><span class="line"><span class="actionscript">            socket.onmessage = <span class="function"><span class="keyword">function</span> <span class="params">(ret)</span> </span>&#123;</span></span><br><span class="line"><span class="javascript">                <span class="keyword">var</span> data = <span class="built_in">JSON</span>.parse(ret.data)</span></span><br><span class="line"><span class="actionscript">                <span class="keyword">var</span> msg = data[<span class="string">"message"</span>]</span></span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(<span class="string">'message: '</span> + msg)<span class="comment">//打印服务端返回的数据</span></span></span><br><span class="line"><span class="javascript">                $(<span class="string">'#retMsg'</span>).prepend(<span class="string">'&lt;p&gt;'</span> + msg + <span class="string">'&lt;/p&gt;'</span>)</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line"><span class="actionscript">    <span class="comment">//]]&gt;</span></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">id</span>=<span class="string">"msg"</span> <span class="attr">value</span>=<span class="string">"Hello, World!"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">id</span>=<span class="string">"sendMsg"</span>&gt;</span>发送<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Received Messages<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"retMsg"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="routing配置"><a href="#routing配置" class="headerlink" title="routing配置"></a>routing配置</h1><p>test01/routing.py：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.urls <span class="keyword">import</span> path</span><br><span class="line"><span class="keyword">from</span> . <span class="keyword">import</span> consumers</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">websocket_urlpatterns = [</span><br><span class="line">    path(<span class="string">'ws/status/&amp;lt;client_id&amp;gt;'</span>, consumers.ServiceConsumer),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>DjangoChannel/routing.py：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> channels.auth <span class="keyword">import</span> AuthMiddlewareStack</span><br><span class="line"><span class="keyword">from</span> channels.routing <span class="keyword">import</span> ProtocolTypeRouter, URLRouter</span><br><span class="line"><span class="keyword">import</span> test01.routing</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">application = ProtocolTypeRouter(&#123;</span><br><span class="line">    <span class="string">'websocket'</span>: AuthMiddlewareStack(</span><br><span class="line">        URLRouter(</span><br><span class="line">            test01.routing.websocket_urlpatterns</span><br><span class="line">        )</span><br><span class="line">    )</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h1 id="consumer的编写"><a href="#consumer的编写" class="headerlink" title="consumer的编写"></a>consumer的编写</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">from</span> channels.generic.websocket <span class="keyword">import</span> AsyncWebsocketConsumer</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ServiceConsumer</span><span class="params">(AsyncWebsocketConsumer)</span>:</span></span><br><span class="line">    <span class="keyword">async</span> <span class="function"><span class="keyword">def</span> <span class="title">connect</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        连接成功后执行该函数</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="comment"># self.scope中保存了请求头、请求体等信息</span></span><br><span class="line">        self.client_id = self.scope[<span class="string">'url_route'</span>][<span class="string">'kwargs'</span>][<span class="string">'client_id'</span>]</span><br><span class="line">        self.room_group_name = <span class="string">'group_%s'</span> % self.client_id</span><br><span class="line"></span><br><span class="line">        print(<span class="string">"scope:"</span>, self.scope)</span><br><span class="line">        print(<span class="string">"client id:"</span>, self.client_id)  <span class="comment"># client id: 1</span></span><br><span class="line">        print(<span class="string">"channel layer:"</span>, self.channel_layer)  <span class="comment"># channel layer: RedisChannelLayer(hosts=[&#123;'address': ('127.0.0.1', 6379)&#125;])</span></span><br><span class="line">        print(<span class="string">"channel name:"</span>, self.channel_name)  <span class="comment"># channel name: specific.VgcSONTt!RxtpUIegoTzX</span></span><br><span class="line">        print(<span class="string">"room group name:"</span>, self.room_group_name)  <span class="comment"># room group name: group_1</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">await</span> self.channel_layer.group_add(</span><br><span class="line">            self.room_group_name,</span><br><span class="line">            self.channel_name</span><br><span class="line">        )</span><br><span class="line">        print(<span class="string">"channel layer:"</span>, self.channel_layer)  <span class="comment"># channel layer: RedisChannelLayer(hosts=[&#123;'address': ('127.0.0.1', 6379)&#125;])</span></span><br><span class="line">        <span class="keyword">await</span> self.accept()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">async</span> <span class="function"><span class="keyword">def</span> <span class="title">disconnect</span><span class="params">(self, close_code)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        与客户端断开连接</span></span><br><span class="line"><span class="string">        :param close_code:</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">await</span> self.channel_layer.group_discard(</span><br><span class="line">            self.room_group_name,</span><br><span class="line">            self.channel_name</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">    <span class="keyword">async</span> <span class="function"><span class="keyword">def</span> <span class="title">receive</span><span class="params">(self, text_data)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        接受客户端websocket发送过来的信息</span></span><br><span class="line"><span class="string">        :param text_data:</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        print(<span class="string">"test data:"</span>, text_data)  <span class="comment"># test data: Hello, World!</span></span><br><span class="line">        print(<span class="string">"group name:"</span>, self.room_group_name)  <span class="comment"># group name: group_1</span></span><br><span class="line"></span><br><span class="line">        message = text_data</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 向指定room group中发送一个event信息，chat_message为对应处理函数</span></span><br><span class="line">        <span class="comment"># 会调用下面的chat_message()方法</span></span><br><span class="line">        <span class="keyword">await</span> self.channel_layer.group_send(</span><br><span class="line">            self.room_group_name,</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="string">'type'</span>: <span class="string">'chat_message'</span>,</span><br><span class="line">                <span class="string">'message'</span>: message,</span><br><span class="line">            &#125;</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">    <span class="keyword">async</span> <span class="function"><span class="keyword">def</span> <span class="title">chat_message</span><span class="params">(self, event)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        接收room group中传过来的信息，并把信息发送给websocket，发送给前端</span></span><br><span class="line"><span class="string">        :param event:</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        message = event[<span class="string">'message'</span>]</span><br><span class="line">        print(<span class="string">"event:"</span>, event)  <span class="comment"># event: &#123;'type': 'chat_message', 'message': 'Hello, World!'&#125;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 向前端发送消息</span></span><br><span class="line">        <span class="keyword">await</span> self.send(text_data=json.dumps(&#123;</span><br><span class="line">            <span class="string">'message'</span>: message</span><br><span class="line">        &#125;))</span><br></pre></td></tr></table></figure>
+
+<h1 id="settings配置"><a href="#settings配置" class="headerlink" title="settings配置"></a>settings配置</h1><p>DjangoChannel/asgi.py：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> django</span><br><span class="line"><span class="keyword">from</span> channels.routing <span class="keyword">import</span> get_default_application</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">os.environ.setdefault(<span class="string">"DJANGO_SETTINGS_MODULE"</span>, <span class="string">"DjangoChannels2.settings"</span>)</span><br><span class="line">django.setup()</span><br><span class="line">application = get_default_application()</span><br></pre></td></tr></table></figure>
+
+<p>DjangoChannel/settings.py：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">INSTALLED_APPS = [</span><br><span class="line">    ...</span><br><span class="line">    <span class="string">'channels'</span>,</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">CHANNEL_LAYERS = &#123;</span><br><span class="line">    <span class="string">'default'</span>: &#123;</span><br><span class="line">    <span class="string">'BACKEND'</span>: <span class="string">'channels_redis.core.RedisChannelLayer'</span>,</span><br><span class="line">    <span class="string">'CONFIG'</span>:</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="string">"hosts"</span>: [(<span class="string">'127.0.0.1'</span>, <span class="number">6379</span>)],</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ASGI_APPLICATION = <span class="string">"DjangoChannel.routing.application"</span></span><br></pre></td></tr></table></figure>
+
+<p>到这里，整个项目就完成了。当访问index.html后，在输入框中输入消息，点击发送按钮后，后端就会接收到消息，并将消息又发回到页面上。</p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/wyzane" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="mailto:wyzane1207@gmail.com" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2020 wyzane<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>
