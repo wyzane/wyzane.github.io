@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!--Description-->
+
+    
+
+    
+        <meta name="description" content="使用django开发前后端分离项目时，django rest framework（以下简称drf）是常用的扩展库，今天主要介绍下drf中几个视图的使用。
+下面例子中涉及的model对象为
+1234567class BooksModel(models.Model):    name = models."/>
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="wyzane"/>
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="django开发中drf视图的使用"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="使用django开发前后端分离项目时，django rest framework（以下简称drf）是常用的扩展库，今天主要介绍下drf中几个视图的使用。
+下面例子中涉及的model对象为
+1234567class BooksModel(models.Model):    name = models."/>
+    
+
+    <!--Open Graph Site Name-->
+        <meta property="og:site_name" content="wyzane&#39;s skill blog"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article"/>
+    
+
+    <!--Page Cover-->
+    
+    
+        <meta property="og:image" content="http://wyzane.cc/img/home7.jpg"/>
+    
+
+        <meta name="twitter:card" content="summary_large_image"/>
+
+    
+
+    
+        <meta name="twitter:image" content="http://wyzane.cc/img/home7.jpg"/>
+    
+
+    <!-- Title -->
+    
+    <title>django开发中drf视图的使用 - wyzane&#39;s skill blog</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../../../../css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css"/>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet"/>
+
+    <!-- Google Analytics -->
+    
+
+
+    <!-- favicon -->
+    
+
+</head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">share and progress!</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="../../../../index.html">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="../../../../archives">
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="http://www.wyzane.com" target="_blank" rel="noopener">
+                            
+                                OldBlog
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="https://github.com/wyzane" target="_blank" rel="noopener">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('/img/home7.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>django开发中drf视图的使用</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2020-05-05
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p>使用django开发前后端分离项目时，django rest framework（以下简称drf）是常用的扩展库，今天主要介绍下drf中几个视图的使用。</p>
+<p>下面例子中涉及的model对象为</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BooksModel</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    name = models.CharField(max_length=<span class="number">32</span>)</span><br><span class="line">    author = models.CharField(max_length=<span class="number">32</span>)</span><br><span class="line">    star = models.IntegerField()</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        db_table = <span class="string">"books"</span></span><br></pre></td></tr></table></figure>
+
+<p>序列化类：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BookInfoSerializer</span><span class="params">(serializers.ModelSerializer)</span>:</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        model = models.BooksModel</span><br><span class="line">        fields = <span class="string">'__all__'</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="APIView"><a href="#APIView" class="headerlink" title="APIView"></a>APIView</h1><p>APIView继承自django的View，APIView中对request进行了封装。<br>在继承自APIView的视图中，你可以使用request.data和request.query_params来接收请求数据，类似于标准django视图中的request.POST和request.GET。例子如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get</span><span class="params">(self, request)</span>:</span></span><br><span class="line">    <span class="comment"># get请求中接收参数</span></span><br><span class="line">    id = request.query_params.get(<span class="string">"id"</span>)</span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">return</span> Response(...)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">post</span><span class="params">(self, request)</span>:</span></span><br><span class="line">    <span class="comment"># post方法中接收参数</span></span><br><span class="line">    name = request.data.get(<span class="string">"name"</span>)</span><br><span class="line">    author = request.data.get(<span class="string">"author"</span>)</span><br><span class="line">    star = request.data.get(<span class="string">"star"</span>)</span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">return</span> Response(...)</span><br></pre></td></tr></table></figure>
+
+<p>在继承自APIView的视图中，可以添加authentication_classes、permission_classes 类，分别用于身份认证和权限认证。可以使用自带的认证类，也可以自定义认证类。</p>
+<h1 id="GenericAPIView"><a href="#GenericAPIView" class="headerlink" title="GenericAPIView"></a>GenericAPIView</h1><p>继承自APIView，主要是增加了操作序列化器和数据库查询的方法。<br>GenericAPIView的视图中可以指定以下属性：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">queryset 列表视图的查询集</span><br><span class="line">serializer_class 视图使用的序列化器</span><br><span class="line">pagination_class 分页控制类</span><br><span class="line">filter_backends 过滤控制后端</span><br><span class="line">lookup_field：查询单一数据库对象时使用的条件字段，默认为pk</span><br></pre></td></tr></table></figure>
+
+<p>可以使用下面的方法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">get_queryset : 获取视图对应的查询集，是列表视图和详细视图获取数据的基础；默认返回的是queryset 的属性，可重写</span><br><span class="line">get_serializer_class : 获取序列化器类，默认返回的是serializer_class，可重写；</span><br><span class="line">get_serializer(self, args, *kwargs)：获取序列化器对象，这一步相对于APIView来说，就免去了创建序列化对象；</span><br><span class="line">get_serializer_context(self)：这个是给序列化器返回的一个context属性，context属性里面有‘request’，‘format’，‘view’值可以在序列化器类中使用。</span><br><span class="line">get_object(self) : 返回详情视图所需的模型类数据对象，默认使用lookup_field参数来过滤queryset。 在试图中可以调用该方法获取详情信息的模型类对象</span><br></pre></td></tr></table></figure>
+
+<p>例子如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">urls.py:</span><br><span class="line"><span class="keyword">from</span> . <span class="keyword">import</span> views</span><br><span class="line"><span class="keyword">from</span> django.urls <span class="keyword">import</span> path</span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    path(<span class="string">'book/&amp;lt;pk&amp;gt;'</span>, views.BookView.as_view())</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">views.py:</span><br><span class="line"><span class="keyword">from</span> . <span class="keyword">import</span> models</span><br><span class="line"><span class="keyword">from</span> rest_framework.response <span class="keyword">import</span> Response</span><br><span class="line"><span class="keyword">from</span> rest_framework.generics <span class="keyword">import</span> GenericAPIView</span><br><span class="line"><span class="keyword">from</span> rest_framework <span class="keyword">import</span> serializers</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BookView</span><span class="params">(GenericAPIView)</span>:</span></span><br><span class="line">    <span class="comment"># 查询集</span></span><br><span class="line">    queryset = models.BooksModel.objects.all()</span><br><span class="line">    <span class="comment"># 指定序列化类</span></span><br><span class="line">    serializer_class = BookInfoSerializer</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get</span><span class="params">(self, request, pk)</span>:</span></span><br><span class="line">        “”” 查询某个书籍的具体信息 ”””</span><br><span class="line">        book = self.get_object()</span><br><span class="line">        ser = self.get_serializer(book)</span><br><span class="line">        <span class="keyword">return</span> Response(ser.data)</span><br></pre></td></tr></table></figure>
+
+<h1 id="ViewSetMixin"><a href="#ViewSetMixin" class="headerlink" title="ViewSetMixin"></a>ViewSetMixin</h1><p>在定义路由时，这种视图可以实现将http方法名与自定义的方法名称映射，下面可以下例子：</p>
+<p>两个get请求：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">urls.py:</span><br><span class="line"><span class="keyword">from</span> .views <span class="keyword">import</span> BookView</span><br><span class="line"><span class="keyword">from</span> django.urls <span class="keyword">import</span> path</span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    path(<span class="string">"book/"</span>, BookView.as_view(&#123;<span class="string">'get'</span>: <span class="string">'list'</span>&#125;)),</span><br><span class="line">    path(<span class="string">"book/id"</span>, BookView.as_view(&#123;<span class="string">'get'</span>: <span class="string">'retrive'</span>&#125;)),</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">views.py:</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BookView</span><span class="params">(ViewSetMixin, APIView)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">list</span><span class="params">(self, request, *args, **kwargs)</span>:</span></span><br><span class="line"></span><br><span class="line">        ret = &#123;<span class="string">"code"</span>: <span class="number">10000</span>, <span class="string">"data"</span>: <span class="literal">None</span>&#125;</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            book_objs = models.BooksModel.objects.all()</span><br><span class="line">            book_ser = BookInfoSerializer(instance=book_objs, many=<span class="literal">True</span>)</span><br><span class="line">            ret[<span class="string">"data"</span>] = book_ser.data</span><br><span class="line">        <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">            ret[<span class="string">"code"</span>] = <span class="number">10001</span></span><br><span class="line">            ret[<span class="string">"error"</span>] = <span class="string">"获取数据失败"</span></span><br><span class="line">        <span class="keyword">return</span> Response(ret)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">retrive</span><span class="params">(self, request, *args, **kwargs)</span>:</span></span><br><span class="line">        ret = &#123;<span class="string">"code"</span>: <span class="number">10000</span>, <span class="string">"data"</span>: <span class="literal">None</span>&#125;</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            pk = kwargs.get(<span class="string">"id"</span>)</span><br><span class="line">            <span class="comment"># 查询课程详细表</span></span><br><span class="line">            book_objs = models.BooksModel.objects.filter(course_id=pk).first()</span><br><span class="line">            book_ser = CourseInfoSerializer(instance=book_objs, many=<span class="literal">False</span>)</span><br><span class="line">            ret[<span class="string">"data"</span>] = book_ser.data</span><br><span class="line">        <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">            print(<span class="string">"e:"</span>, e)</span><br><span class="line">            ret[<span class="string">"code"</span>] = <span class="number">10001</span></span><br><span class="line">            ret[<span class="string">"error"</span>] = <span class="string">"获取数据失败"</span></span><br><span class="line">        <span class="keyword">return</span> Response(ret)</span><br></pre></td></tr></table></figure>
+
+
+
+<p>get和post请求：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">urls.py:</span><br><span class="line"><span class="keyword">from</span> . <span class="keyword">import</span> views</span><br><span class="line"><span class="keyword">from</span> django.urls <span class="keyword">import</span> path</span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    path(<span class="string">'book2/'</span>, views.Book2View.as_view(&#123;<span class="string">"get"</span>: <span class="string">'list'</span>, <span class="string">"post"</span>: <span class="string">'create'</span>&#125;)),</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">views.py:</span><br><span class="line"><span class="keyword">from</span> . <span class="keyword">import</span> models</span><br><span class="line"><span class="keyword">from</span> rest_framework.response <span class="keyword">import</span> Response</span><br><span class="line"><span class="keyword">from</span> rest_framework.views <span class="keyword">import</span> APIView</span><br><span class="line"><span class="keyword">from</span> rest_framework.viewsets <span class="keyword">import</span> ViewSetMixin</span><br><span class="line"><span class="keyword">from</span> rest_framework.generics <span class="keyword">import</span> GenericAPIView</span><br><span class="line"><span class="keyword">from</span> rest_framework <span class="keyword">import</span> serializers</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Book2View</span><span class="params">(ViewSetMixin, APIView)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">list</span><span class="params">(self, request)</span>:</span></span><br><span class="line">        books = models.BooksModel.objects.all()</span><br><span class="line">        ser = BookInfoSerializer(instance=books, many=<span class="literal">True</span>)</span><br><span class="line">        <span class="keyword">return</span> Response(ser.data)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">create</span><span class="params">(self, request)</span>:</span></span><br><span class="line">        name = request.data.get(<span class="string">"name"</span>)</span><br><span class="line">        author = request.data.get(<span class="string">"author"</span>)</span><br><span class="line">        star = request.data.get(<span class="string">"star"</span>)</span><br><span class="line">        book_info = &#123;</span><br><span class="line">            <span class="string">"name"</span>: name,</span><br><span class="line">            <span class="string">"author"</span>: author,</span><br><span class="line">            <span class="string">"star"</span>: star</span><br><span class="line">        &#125;</span><br><span class="line">        models.BooksModel.objects.create(**book_info)</span><br><span class="line">        <span class="keyword">return</span> Response(dict(msg=<span class="string">"OK"</span>))</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="视图集ViewSet"><a href="#视图集ViewSet" class="headerlink" title="视图集ViewSet"></a>视图集ViewSet</h1><p>继承自APIView与ViewSetMixin，可以实现与APIView类似的功能，如身份认证、权限校验、流量管理等；也可以实现在调用as_view()时传入字典（如{‘get’:’list’}）的映射处理工作。</p>
+<p>例子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">urls.py:</span><br><span class="line">urlpatterns = [</span><br><span class="line">    path(<span class="string">'book5/'</span>, views.Book5View.as_view(&#123;<span class="string">"get"</span>: <span class="string">'list'</span>, <span class="string">"post"</span>: <span class="string">'create'</span>&#125;)),</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">views.py</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Book5View</span><span class="params">(ViewSet)</span>:</span></span><br><span class="line">    <span class="string">""" 同ViewSetMixin + APIView """</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">list</span><span class="params">(self, request)</span>:</span></span><br><span class="line">        books = models.BooksModel.objects.all()</span><br><span class="line">        ser = BookInfoSerializer(instance=books, many=<span class="literal">True</span>)</span><br><span class="line">        <span class="keyword">return</span> Response(ser.data)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">create</span><span class="params">(self, request)</span>:</span></span><br><span class="line">        name = request.data.get(<span class="string">"name"</span>)</span><br><span class="line">        author = request.data.get(<span class="string">"author"</span>)</span><br><span class="line">        star = request.data.get(<span class="string">"star"</span>)</span><br><span class="line">        book_info = &#123;</span><br><span class="line">            <span class="string">"name"</span>: name,</span><br><span class="line">            <span class="string">"author"</span>: author,</span><br><span class="line">            <span class="string">"star"</span>: star</span><br><span class="line">        &#125;</span><br><span class="line">        models.BooksModel.objects.create(**book_info)</span><br><span class="line">        <span class="keyword">return</span> Response(dict(msg=<span class="string">"OK"</span>))</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="GenericViewSet"><a href="#GenericViewSet" class="headerlink" title="GenericViewSet"></a>GenericViewSet</h1><p>继承自GenericAPIView+ViewSetMixin，比上面讲到的ViewSet更方便，在实现了调用as_view()时传入字典（如{‘get’:’list’}）的映射处理工作的同时，还提供了GenericAPIView提供的基础方法，不用再编写ViewSet中的list()、create()等方法。<br>例子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">urls.py:</span><br><span class="line">urlpatterns = [</span><br><span class="line">    path(<span class="string">'book6/'</span>, views.Book6View.as_view(&#123;<span class="string">'get'</span>: <span class="string">'list'</span>&#125;)),</span><br><span class="line">    path(<span class="string">'book6/&amp;lt;pk&amp;gt;'</span>, views.Book6View.as_view(&#123;<span class="string">'get'</span>: <span class="string">'retrive'</span>&#125;)),</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">views.py</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Book6View</span><span class="params">(GenericViewSet)</span>:</span></span><br><span class="line">    <span class="string">""" 同GenericAPIView + ViewSetMixin """</span></span><br><span class="line">    <span class="comment"># 查询集</span></span><br><span class="line">    queryset = models.BooksModel.objects.all()</span><br><span class="line">    <span class="comment"># 指定序列化类</span></span><br><span class="line">    serializer_class = BookInfoSerializer</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">list</span><span class="params">(self, request)</span>:</span></span><br><span class="line">        book = self.get_queryset()</span><br><span class="line">        ser = self.get_serializer(instance=book, many=<span class="literal">True</span>)</span><br><span class="line">        <span class="keyword">return</span> Response(ser.data)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">retrive</span><span class="params">(self, request, pk)</span>:</span></span><br><span class="line">        book = self.get_object()</span><br><span class="line">        ser = self.get_serializer(book)</span><br><span class="line">        <span class="keyword">return</span> Response(ser.data)</span><br></pre></td></tr></table></figure>
+
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/wyzane" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="mailto:wyzane1207@gmail.com" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2020 wyzane<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>
