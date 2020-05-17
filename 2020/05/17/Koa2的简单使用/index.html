@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!--Description-->
+
+    
+
+    
+        <meta name="description" content="Koa2 是一个基于 Nodejs 的web 服务端框架，它是一个插件式框架，很多功能都可以i通过安装插件的方式扩展。下面介绍下它的简单使用。
+开发环境搭建首先要安装 node 和 npm 环境，然后再执行以下操作：
+1234561. 初始化项目（生成package.json文件）	npm init"/>
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="wyzane"/>
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Koa2的简单使用"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="Koa2 是一个基于 Nodejs 的web 服务端框架，它是一个插件式框架，很多功能都可以i通过安装插件的方式扩展。下面介绍下它的简单使用。
+开发环境搭建首先要安装 node 和 npm 环境，然后再执行以下操作：
+1234561. 初始化项目（生成package.json文件）	npm init"/>
+    
+
+    <!--Open Graph Site Name-->
+        <meta property="og:site_name" content="wyzane&#39;s skill blog"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article"/>
+    
+
+    <!--Page Cover-->
+    
+    
+        <meta property="og:image" content="http://wyzane.cc/img/home7.jpg"/>
+    
+
+        <meta name="twitter:card" content="summary_large_image"/>
+
+    
+
+    
+        <meta name="twitter:image" content="http://wyzane.cc/img/home7.jpg"/>
+    
+
+    <!-- Title -->
+    
+    <title>Koa2的简单使用 - wyzane&#39;s skill blog</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../../../../css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css"/>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet"/>
+
+    <!-- Google Analytics -->
+    
+
+
+    <!-- favicon -->
+    
+
+<link rel="alternate" href="atom.xml" title="wyzane's skill blog" type="application/atom+xml">
+</head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">share and progress!</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="../../../../index.html">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="../../../../archives">
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="../../../../categories/Frontend">
+                            
+                                Frontend
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="../../../../categories/Nodejs">
+                            
+                                Nodejs
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="http://www.wyzane.com" target="_blank" rel="noopener">
+                            
+                                OldBlog
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="https://github.com/wyzane" target="_blank" rel="noopener">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('/img/home7.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>Koa2的简单使用</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2020-05-17
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+<a href="/categories/Nodejs/">Nodejs</a>
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p>Koa2 是一个基于 Nodejs 的web 服务端框架，它是一个插件式框架，很多功能都可以i通过安装插件的方式扩展。下面介绍下它的简单使用。</p>
+<h2 id="开发环境搭建"><a href="#开发环境搭建" class="headerlink" title="开发环境搭建"></a>开发环境搭建</h2><p>首先要安装 node 和 npm 环境，然后再执行以下操作：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1. 初始化项目（生成package.json文件）</span><br><span class="line">	npm init -y</span><br><span class="line">2. 安装koa</span><br><span class="line">	npm install --save koa （--save表示安装到生产环境 --save-dev表示安装到开发环境）</span><br><span class="line">3. 运行koa服务</span><br><span class="line">	node index.js</span><br></pre></td></tr></table></figure>
+
+
+
+<p>环境搭建完成后，可以写一个简单的demo：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// demo.js</span></span><br><span class="line"><span class="comment">// 引入Koa</span></span><br><span class="line"><span class="keyword">const</span> Koa = <span class="built_in">require</span>(<span class="string">'koa'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 实例化 koa</span></span><br><span class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> Koa();</span><br><span class="line"></span><br><span class="line"><span class="comment">// ctx: request和response对象都保存在ctx里面</span></span><br><span class="line"><span class="comment">// =&gt; 箭头函数</span></span><br><span class="line">app.use(<span class="keyword">async</span>(ctx) =&gt; &#123;</span><br><span class="line">    ctx.body = <span class="string">'hello koa'</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 设置监听端口</span></span><br><span class="line">app.listen(<span class="number">8090</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'koa server starting ...'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">或者可以这样写：</span></span><br><span class="line"><span class="comment">app.listen(8090, ()=&gt;&#123;</span></span><br><span class="line"><span class="comment">    console.log('koa server starting ...');</span></span><br><span class="line"><span class="comment">&#125;);</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<p>写完后，执行 node demo.js，然后再浏览器上输入 localhost:8090，可以看到，返回了 “hello koa”。</p>
+<h2 id="定义get请求"><a href="#定义get请求" class="headerlink" title="定义get请求"></a>定义get请求</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// query：返回的是格式化好的参数对象</span></span><br><span class="line"><span class="comment">// querystring:  返回的是请求字符串</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> Koa = <span class="built_in">require</span>(<span class="string">'koa'</span>);</span><br><span class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> Koa();</span><br><span class="line"></span><br><span class="line">app.use(<span class="keyword">async</span>(ctx)=&gt;&#123;</span><br><span class="line">    <span class="comment">// 请求url</span></span><br><span class="line">    <span class="keyword">let</span> url = ctx.url;</span><br><span class="line">    <span class="comment">// 获取request对象，并通过request对象接收请求信息</span></span><br><span class="line">    <span class="keyword">let</span> request = ctx.request;</span><br><span class="line">    <span class="keyword">let</span> query = request.query;</span><br><span class="line">    <span class="keyword">let</span> queryString = request.querystring;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 从上下文ctx中直接获取请求信息</span></span><br><span class="line">    <span class="comment">// let ctx_query = ctx.query;</span></span><br><span class="line">    <span class="comment">// let ctx_querystring = ctx.querystring;</span></span><br><span class="line"></span><br><span class="line">    ctx.body = &#123;</span><br><span class="line">        url,</span><br><span class="line">        query,</span><br><span class="line">        queryString</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.listen(<span class="number">8090</span>, ()=&gt;&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'koa server starting ...'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>上面的服务启动后，使用 postman 访问，结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">postman 访问的url为：localhost:8090/?name=wyzane&amp;age=18</span><br><span class="line">postman 接收到的结果为：</span><br><span class="line">&#123;</span><br><span class="line">    &quot;url&quot;: &quot;/?name=wyzane&amp;age=18&quot;,</span><br><span class="line">    &quot;query&quot;: &#123;</span><br><span class="line">        &quot;name&quot;: &quot;wyzane&quot;,</span><br><span class="line">        &quot;age&quot;: &quot;18&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;queryString&quot;: &quot;name=wyzane&amp;age=18&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="定义post请求"><a href="#定义post请求" class="headerlink" title="定义post请求"></a>定义post请求</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Koa = <span class="built_in">require</span>(<span class="string">'koa'</span>);</span><br><span class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> Koa();</span><br><span class="line">app.use(<span class="keyword">async</span>(ctx)=&gt;&#123;</span><br><span class="line">    <span class="keyword">if</span>(ctx.url===<span class="string">'/'</span> &amp;&amp; ctx.method===<span class="string">'GET'</span>)&#123;</span><br><span class="line">        <span class="comment">// 显示表单页面</span></span><br><span class="line">        <span class="keyword">let</span> html = <span class="string">`</span></span><br><span class="line"><span class="string">            &lt;h1&gt;Koa2 Class&lt;/h1&gt;</span></span><br><span class="line"><span class="string">            &lt;form method="POST" action="/"&gt;</span></span><br><span class="line"><span class="string">                &lt;p&gt;username:&lt;/p&gt; &lt;input name="userName" /&gt;&lt;br/&gt;</span></span><br><span class="line"><span class="string">                &lt;p&gt;age:&lt;/p&gt; &lt;input name="userAge" /&gt;&lt;br/&gt;</span></span><br><span class="line"><span class="string">                &lt;p&gt;website:&lt;/p&gt; &lt;input name="website" /&gt;&lt;br/&gt;</span></span><br><span class="line"><span class="string">                &lt;button type="submit"&gt;sibmit&lt;/submit&gt;</span></span><br><span class="line"><span class="string">            &lt;/form&gt;</span></span><br><span class="line"><span class="string">        `</span>;</span><br><span class="line">        ctx.body = html;</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(ctx.url===<span class="string">'/'</span> &amp;&amp; ctx.method===<span class="string">'POST'</span>)&#123;</span><br><span class="line">        <span class="keyword">let</span> postParams = <span class="keyword">await</span> parse(ctx);</span><br><span class="line">        ctx.body = postParams;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        ctx.body = <span class="string">'&lt;h1&gt;404!&lt;/h1&gt;'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">parse</span>(<span class="params">ctx</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>)=&gt;</span>&#123;</span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            <span class="keyword">let</span> postParams = <span class="string">''</span>;</span><br><span class="line">            ctx.req.addListener(<span class="string">'data'</span>, (data)=&gt;&#123;</span><br><span class="line">                postParams += data;</span><br><span class="line">            &#125;)</span><br><span class="line">            ctx.req.on(<span class="string">'end'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                <span class="keyword">let</span> postData = parseQuery(postParams);</span><br><span class="line">                resolve(postData);</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;<span class="keyword">catch</span>(error)&#123;</span><br><span class="line">            reject(error);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">parseQuery</span>(<span class="params">queryStr</span>)</span>&#123;</span><br><span class="line">    <span class="comment">/* 解析 post 请求参数 */</span></span><br><span class="line">    <span class="keyword">let</span> queryData = &#123;&#125;;</span><br><span class="line">    <span class="keyword">let</span> queryStrList = queryStr.split(<span class="string">'&amp;'</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(queryStrList);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> itemStr <span class="keyword">of</span> queryStrList)&#123;</span><br><span class="line">        <span class="keyword">let</span> item = itemStr.split(<span class="string">'='</span>);</span><br><span class="line">        queryData[item[<span class="number">0</span>]] = <span class="built_in">decodeURIComponent</span>(item[<span class="number">1</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> queryData;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">app.listen(<span class="number">8091</span>, ()=&gt;&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'server starting ...'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">ctx.request与ctx.req的区别</span><br><span class="line">ctx.request: 是koa2中的context经过封装的请求对象，它用起来更直观和简单</span><br><span class="line">ctx.req: 是context提供的nodejs原生http请求对象</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">解析Post请求的步骤</span><br><span class="line">1. 解析上下文ctx中的原生nodejs对象req</span><br><span class="line">2. 将post表单数据解析成query string字符串（例如user=wyzane&amp;age=18）</span><br><span class="line">3. 将字符串转换成json格式</span><br></pre></td></tr></table></figure>
+
+<p>上面的代码中，解析 post 请求参数时，是通过直接解析字符串的方式，对于处理 post 请求，下面还会介绍一些中间件用来处理 post 请求的参数。</p>
+<h2 id="路由的使用"><a href="#路由的使用" class="headerlink" title="路由的使用"></a>路由的使用</h2><p>路由是服务端开发很重要的一个方面，Koa2 中我们可以使用 koa-router 插件来实现路由。</p>
+<p>安装：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save koa-router</span><br></pre></td></tr></table></figure>
+
+<p>下面看一个简单的例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Koa = <span class="built_in">require</span>(<span class="string">'koa'</span>);</span><br><span class="line"><span class="keyword">const</span> Router = <span class="built_in">require</span>(<span class="string">'koa-router'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> Koa();</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> router = <span class="keyword">new</span> Router()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 接收get请求</span></span><br><span class="line">router.get(<span class="string">'/'</span>, (ctx, next)=&gt;&#123;</span><br><span class="line">    ctx.body = <span class="string">'hello wyzane'</span></span><br><span class="line">&#125;);</span><br><span class="line">router.get(<span class="string">'/get'</span>, (ctx, next)=&gt;&#123;</span><br><span class="line">    ctx.body = <span class="string">'hello get'</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// routes()表示装载路由，allowedMethods()表示只接收某种方法，不接收其他方法</span></span><br><span class="line">app.use(router.routes()).use(router.allowedMethods());</span><br><span class="line"></span><br><span class="line">app.listen(<span class="number">8093</span>, ()=&gt;&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'server starting ...'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>启动上面的服务后，在浏览器上请求 <a href="http://localhost:8093/" target="_blank" rel="noopener">http://localhost:8093/</a> 或者 <a href="http://localhost:8093/get，回得到不同的响应信息。" target="_blank" rel="noopener">http://localhost:8093/get，回得到不同的响应信息。</a></p>
+<p>我们还可以给路由加上前缀：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Koa = <span class="built_in">require</span>(<span class="string">'koa'</span>);</span><br><span class="line"><span class="keyword">const</span> Router = <span class="built_in">require</span>(<span class="string">'koa-router'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> Koa();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 实例化路由时指定前缀</span></span><br><span class="line"><span class="keyword">const</span> router = <span class="keyword">new</span> Router(&#123;</span><br><span class="line">    prefix: <span class="string">'/wyzane'</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 接收gei请求</span></span><br><span class="line">router.get(<span class="string">'/'</span>, (ctx, next)=&gt;&#123;</span><br><span class="line">    ctx.body = <span class="string">'hello wyzane'</span></span><br><span class="line">&#125;);</span><br><span class="line">router.get(<span class="string">'/get'</span>, (ctx, next)=&gt;&#123;</span><br><span class="line">    ctx.body = <span class="string">'hello get'</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// routes()表示装载路由，allowedMethods()表示只接收某种方法，不接收其他方法</span></span><br><span class="line">app.use(router.routes()).use(router.allowedMethods());</span><br><span class="line"></span><br><span class="line">app.listen(<span class="number">8093</span>, ()=&gt;&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'server starting ...'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>启动上面的服务后，在浏览器上请求 <a href="http://localhost:8093/wyzane" target="_blank" rel="noopener">http://localhost:8093/wyzane</a> 或者 <a href="http://localhost:8093/wyzane/get，回得到不同的响应信息。" target="_blank" rel="noopener">http://localhost:8093/wyzane/get，回得到不同的响应信息。</a></p>
+<p>除了上面给路由添加前缀，还可以定义父子路由：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Koa = <span class="built_in">require</span>(<span class="string">'koa'</span>);</span><br><span class="line"><span class="keyword">const</span> Router = <span class="built_in">require</span>(<span class="string">'koa-router'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> Koa();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 子路由</span></span><br><span class="line"><span class="keyword">const</span> home = <span class="keyword">new</span> Router();</span><br><span class="line">home.get(<span class="string">'/info'</span>, <span class="keyword">async</span>(ctx)=&gt;&#123;</span><br><span class="line">    ctx.body = <span class="string">'hello info'</span>;</span><br><span class="line">&#125;).get(<span class="string">'/todo'</span>, <span class="keyword">async</span>(ctx)=&gt;&#123;</span><br><span class="line">    ctx.body = <span class="string">'hello todo'</span>;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> interest = <span class="keyword">new</span> Router();</span><br><span class="line">interest.get(<span class="string">'/basket'</span>, <span class="keyword">async</span>(ctx)=&gt;&#123;</span><br><span class="line">    ctx.body = <span class="string">'hello basket'</span>;</span><br><span class="line">&#125;).get(<span class="string">'/soccer'</span>, <span class="keyword">async</span>(ctx)=&gt;&#123;</span><br><span class="line">    ctx.body = <span class="string">'hello soccer'</span>;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 父级路由</span></span><br><span class="line"><span class="keyword">const</span> router = <span class="keyword">new</span> Router();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 装载子路由到父路由</span></span><br><span class="line">router.use(<span class="string">'/home'</span>, home.routes(), home.allowedMethods());</span><br><span class="line">router.use(<span class="string">'/interest'</span>, interest.routes(), interest.allowedMethods());</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// routes()表示装载路由，allowedMethods()表示只接收某种方法，不接收其他方法</span></span><br><span class="line">app.use(router.routes()).use(router.allowedMethods());</span><br><span class="line"></span><br><span class="line">app.listen(<span class="number">8093</span>, ()=&gt;&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'server starting ...'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>上面的代码中，有以下路由</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">http://localhost:8093/home/info</span><br><span class="line">http://localhost:8093/home/todo</span><br><span class="line">http://localhost:8093/interest/basket</span><br><span class="line">http://localhost:8093/interest/soccer</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="请求体解析"><a href="#请求体解析" class="headerlink" title="请求体解析"></a>请求体解析</h2><p>解析请求体有很多插件，下面介绍几种。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">koa-body：可以解析 x-www-form-urlencoded和json类型的请求体</span><br><span class="line">	安装：npm install --save koa-body</span><br><span class="line"></span><br><span class="line">koa-bodyparse：可以解析 x-www-form-urlencoded和json类型的请求体</span><br><span class="line">	安装：npm install --save koa-bodyparse</span><br><span class="line"></span><br><span class="line">multy: 上面的中间件都不能解析form-data类型的请求体，该中间件则可以解析form-data类型的请求体(只能解析该类型)</span><br><span class="line">	安装：npm install --save multy</span><br></pre></td></tr></table></figure>
+
+
+
+<p>下面分别看以下它们使用的例子。</p>
+<p>koa-body 的使用：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Koa = <span class="built_in">require</span>(<span class="string">'koa'</span>);</span><br><span class="line"><span class="keyword">const</span> bodyParser = <span class="built_in">require</span>(<span class="string">'koa-body'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> Koa();</span><br><span class="line"></span><br><span class="line">app.use(bodyParser());</span><br><span class="line"></span><br><span class="line">app.use(<span class="keyword">async</span>(ctx) =&gt; &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(ctx.request.body);</span><br><span class="line">    ctx.body = ctx.request.body;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.listen(<span class="number">8099</span>, ()=&gt;&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'server starting ...'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+
+
+<p>koa-bodyparser 的使用：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Koa = <span class="built_in">require</span>(<span class="string">'koa'</span>);</span><br><span class="line"><span class="keyword">const</span> bodyParser = <span class="built_in">require</span>(<span class="string">'koa-bodyparser'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> Koa();</span><br><span class="line"></span><br><span class="line">app.use(bodyParser());</span><br><span class="line"></span><br><span class="line">app.use(<span class="keyword">async</span>(ctx) =&gt; &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(ctx.request.body);</span><br><span class="line">    ctx.body = ctx.request.body;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.listen(<span class="number">8099</span>, ()=&gt;&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'server starting ...'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+
+
+<p>multy 的使用：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Koa = <span class="built_in">require</span>(<span class="string">'koa'</span>);</span><br><span class="line"><span class="keyword">const</span> Multy = <span class="built_in">require</span>(<span class="string">'multy'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> Koa();</span><br><span class="line"></span><br><span class="line">app.use(Multy());</span><br><span class="line"></span><br><span class="line">app.use(<span class="keyword">async</span>(ctx) =&gt; &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(ctx.request.body);</span><br><span class="line">    ctx.body = ctx.request.body;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.listen(<span class="number">8099</span>, ()=&gt;&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'server starting ...'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+
+
+<p>查看请求体信息时，都可以在 ctx.request.body 中查看。</p>
+<p>Koa2 是一个小巧、灵活、强大的 web 服务端框架，对于经常写 python 或者 java 的小伙伴来说，它的代码风格、开发方式都会吸引我们去探讨一番。</p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/wyzane" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="mailto:wyzane1207@gmail.com" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2020 wyzane<br></p>
+                <!--
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+            		-->
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>
