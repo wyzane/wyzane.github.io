@@ -56,7 +56,7 @@ locust中的常用类如下：
     <!--Page Cover-->
     
     
-        <meta property="og:image" content="http://wyzane.cc/img/home7.jpg"/>
+        <meta property="og:image" content="/img/home7.jpg"/>
     
 
         <meta name="twitter:card" content="summary_large_image"/>
@@ -64,7 +64,7 @@ locust中的常用类如下：
     
 
     
-        <meta name="twitter:image" content="http://wyzane.cc/img/home7.jpg"/>
+        <meta name="twitter:image" content="/img/home7.jpg"/>
     
 
     <!-- Title -->
@@ -157,7 +157,7 @@ locust中的常用类如下：
                     </li>
                 
                     <li>
-                        <a href="http://www.wyzane.com" target="_blank" rel="noopener">
+                        <a href="http://www.wyzane.com">
                             
                                 OldBlog
                             
@@ -165,7 +165,7 @@ locust中的常用类如下：
                     </li>
                 
                     <li>
-                        <a href="https://github.com/wyzane" target="_blank" rel="noopener">
+                        <a href="https://github.com/wyzane">
                             
                                 <i class="fa fa-github fa-stack-2x"></i>
                             
@@ -239,7 +239,7 @@ locust中的常用类如下：
 
 
 
-<h1 id="浏览器测试"><a href="#浏览器测试" class="headerlink" title="浏览器测试"></a>浏览器测试</h1><p>我们也可以在 locust 为我们提供的管理控制台上进行测试。 在浏览器中访问地址 <a href="http://localhost:8089/" target="_blank" rel="noopener">http://localhost:8089/</a> 可以进入 locust 的界面，填入Number of users to simulate和Hatch rate参数（分别表示虚拟用户数量和每秒产生的用户数量），然后点击Start swarming，即可开始测试工作。</p>
+<h1 id="浏览器测试"><a href="#浏览器测试" class="headerlink" title="浏览器测试"></a>浏览器测试</h1><p>我们也可以在 locust 为我们提供的管理控制台上进行测试。 在浏览器中访问地址 <a href="http://localhost:8089/">http://localhost:8089/</a> 可以进入 locust 的界面，填入Number of users to simulate和Hatch rate参数（分别表示虚拟用户数量和每秒产生的用户数量），然后点击Start swarming，即可开始测试工作。</p>
 <h1 id="分布式测试"><a href="#分布式测试" class="headerlink" title="分布式测试"></a>分布式测试</h1><p>locust也支持分布式测试。主从机中必须运行相同的测试代码（把主机中代码复制一份到多个从机中），主机负责收集测试数据，从机进行施压测试；</p>
 <p>在主机终端中执行：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">locust -f test.py --master</span><br></pre></td></tr></table></figure>

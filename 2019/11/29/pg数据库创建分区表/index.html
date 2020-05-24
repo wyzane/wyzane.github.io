@@ -42,7 +42,7 @@
     <!--Page Cover-->
     
     
-        <meta property="og:image" content="http://wyzane.cc/img/home7.jpg"/>
+        <meta property="og:image" content="/img/home7.jpg"/>
     
 
         <meta name="twitter:card" content="summary_large_image"/>
@@ -50,7 +50,7 @@
     
 
     
-        <meta name="twitter:image" content="http://wyzane.cc/img/home7.jpg"/>
+        <meta name="twitter:image" content="/img/home7.jpg"/>
     
 
     <!-- Title -->
@@ -143,7 +143,7 @@
                     </li>
                 
                     <li>
-                        <a href="http://www.wyzane.com" target="_blank" rel="noopener">
+                        <a href="http://www.wyzane.com">
                             
                                 OldBlog
                             
@@ -151,7 +151,7 @@
                     </li>
                 
                     <li>
-                        <a href="https://github.com/wyzane" target="_blank" rel="noopener">
+                        <a href="https://github.com/wyzane">
                             
                                 <i class="fa fa-github fa-stack-2x"></i>
                             
@@ -218,7 +218,7 @@
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <h2 id="PostgreSQL中创建分区表"><a href="#PostgreSQL中创建分区表" class="headerlink" title="PostgreSQL中创建分区表"></a>PostgreSQL中创建分区表</h2><p>提高应用程序查询数据库效率方面，除了优化程序中的代码，对数据库的管理与维护也是很重要的一方面。比如在开发阶段表中字段的类型、是否创建索引、大表是否创建分区表及是否单独指定表空间等。下面以postgresql 10.8(以下简称pg)为例，介绍下在pg中如何创建分区表。</p>
 <p>首先，贴出来pg的官方文档，上面讲的还是比较详细的：</p>
-<p><a href="https://www.postgresql.org/docs/10/index.html" target="_blank" rel="noopener">https://www.postgresql.org/docs/10/index.html</a></p>
+<p><a href="https://www.postgresql.org/docs/10/index.html">https://www.postgresql.org/docs/10/index.html</a></p>
 <p>pg中有两种分区方式，一个是pg提供的内建分区方式，另一种是自定义创建分区的方式。</p>
 <h3 id="内建分区方式"><a href="#内建分区方式" class="headerlink" title="内建分区方式"></a>内建分区方式</h3><p>内建分区表类型：范围分区，列表分区。下面以范围分区为例。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 创建分区主表，以call_time作为范围分区</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> partition_test_table_master</span><br><span class="line">(</span><br><span class="line">    <span class="keyword">id</span>  <span class="built_in">SERIAL</span> <span class="keyword">not</span> <span class="literal">null</span>,</span><br><span class="line">    call_time   <span class="built_in">date</span> <span class="keyword">not</span> <span class="literal">null</span>,</span><br><span class="line">    session_id  <span class="built_in">char</span>(<span class="number">64</span>),</span><br><span class="line">    user_input  <span class="built_in">char</span>(<span class="number">1024</span>),</span><br><span class="line">    intention   <span class="built_in">char</span>(<span class="number">1024</span>)</span><br><span class="line">) <span class="keyword">PARTITION</span> <span class="keyword">BY</span> <span class="keyword">RANGE</span> (call_time);</span><br></pre></td></tr></table></figure>

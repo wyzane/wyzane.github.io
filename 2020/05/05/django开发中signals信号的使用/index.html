@@ -48,7 +48,7 @@ django中有内置的信号，我们也可以自定义信号。django中有以�
     <!--Page Cover-->
     
     
-        <meta property="og:image" content="http://wyzane.cc/img/home7.jpg"/>
+        <meta property="og:image" content="/img/home7.jpg"/>
     
 
         <meta name="twitter:card" content="summary_large_image"/>
@@ -56,7 +56,7 @@ django中有内置的信号，我们也可以自定义信号。django中有以�
     
 
     
-        <meta name="twitter:image" content="http://wyzane.cc/img/home7.jpg"/>
+        <meta name="twitter:image" content="/img/home7.jpg"/>
     
 
     <!-- Title -->
@@ -149,7 +149,7 @@ django中有内置的信号，我们也可以自定义信号。django中有以�
                     </li>
                 
                     <li>
-                        <a href="http://www.wyzane.com" target="_blank" rel="noopener">
+                        <a href="http://www.wyzane.com">
                             
                                 OldBlog
                             
@@ -157,7 +157,7 @@ django中有内置的信号，我们也可以自定义信号。django中有以�
                     </li>
                 
                     <li>
-                        <a href="https://github.com/wyzane" target="_blank" rel="noopener">
+                        <a href="https://github.com/wyzane">
                             
                                 <i class="fa fa-github fa-stack-2x"></i>
                             
@@ -213,7 +213,7 @@ django中有内置的信号，我们也可以自定义信号。django中有以�
 <p>django中有内置的信号，我们也可以自定义信号。<br>django中有以下常用内置信号：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">django.db.models.signals.pre_save 在某个Model保存之前调用</span><br><span class="line">django.db.models.signals.post_save 在某个Model保存之后调用</span><br><span class="line">django.db.models.signals.pre_delete 在某个Model删除之前调用</span><br><span class="line">django.db.models.signals.post_delete 在某个Model删除之后调用</span><br><span class="line">django.core.signals.request_started 在建立Http请求时发送</span><br><span class="line">django.core.signals.request_finished 在关闭Http请求时发送</span><br></pre></td></tr></table></figure>
 
-<p>其他内置信号可以查看官方文档：<br><a href="https://docs.djangoproject.com/en/2.1/topics/signals/" target="_blank" rel="noopener">https://docs.djangoproject.com/en/2.1/topics/signals/</a></p>
+<p>其他内置信号可以查看官方文档：<br><a href="https://docs.djangoproject.com/en/2.1/topics/signals/">https://docs.djangoproject.com/en/2.1/topics/signals/</a></p>
 <p>下面介绍下内置信号和自定义信号的使用。</p>
 <h1 id="内置信号"><a href="#内置信号" class="headerlink" title="内置信号"></a>内置信号</h1><p>下面举一个post_save的例子，test01 是 app 名称。</p>
 <p>首先在 test01/signals/handler.py 中定义signal函数：</p>
@@ -228,7 +228,7 @@ django中有内置的信号，我们也可以自定义信号。django中有以�
 <p>配置 <strong>test01/</strong>init.py：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">default_app_config = <span class="string">'test01.apps.Test01AppConfig'</span></span><br></pre></td></tr></table></figure>
 
-<p>此时在postman中分别请求下面两个url：<br><a href="http://127.0.0.1:8000/test01/user/" target="_blank" rel="noopener">http://127.0.0.1:8000/test01/user/</a><br><a href="http://127.0.0.1:8000/test01/student/" target="_blank" rel="noopener">http://127.0.0.1:8000/test01/student/</a><br>打印的结果分别是：</p>
+<p>此时在postman中分别请求下面两个url：<br><a href="http://127.0.0.1:8000/test01/user/">http://127.0.0.1:8000/test01/user/</a><br><a href="http://127.0.0.1:8000/test01/student/">http://127.0.0.1:8000/test01/student/</a><br>打印的结果分别是：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">-- user view --</span><br><span class="line">save_signal sender: &amp;lt;class &apos;test01.models.UserModel&apos;;</span><br><span class="line"></span><br><span class="line">-- student view --</span><br><span class="line">save_signal sender: &amp;lt;class &apos;test01.models.StudentModel&apos;;</span><br><span class="line">student_signal sender: &amp;lt;class &apos;test01.models.StudentModel&apos;;</span><br></pre></td></tr></table></figure>
 
 <p>通过上面的结果，我们也可以看出信号中使用和不使用sender参数区别。</p>
@@ -243,12 +243,12 @@ django中有内置的信号，我们也可以自定义信号。django中有以�
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.dispatch <span class="keyword">import</span> receiver</span><br><span class="line"><span class="keyword">from</span> .signals <span class="keyword">import</span> signal01</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@receiver(signal01)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">my_signal</span><span class="params">(sender, **kwargs)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    信号触发后执行的操作</span></span><br><span class="line"><span class="string">    :param sender: </span></span><br><span class="line"><span class="string">    :param kwargs: </span></span><br><span class="line"><span class="string">    :return: </span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    print(<span class="string">"my signal:"</span>, sender, kwargs)</span><br></pre></td></tr></table></figure>
 
 <p>下一步就是配置，这里的配置与内置信号中的配置相同，就不介绍了。</p>
-<p>配置完成后，请求下面的url<br><a href="http://127.0.0.1:8000/test01/signal/" target="_blank" rel="noopener">http://127.0.0.1:8000/test01/signal/</a><br>看到打印的结果如下：</p>
+<p>配置完成后，请求下面的url<br><a href="http://127.0.0.1:8000/test01/signal/">http://127.0.0.1:8000/test01/signal/</a><br>看到打印的结果如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">my signal: signal_view &#123;‘signal’: &lt;django.dispatch.dispatcher.Signal object at 0x000001F57FCA1160&gt;, ‘p1’: ‘wyzane’, ‘p2’: 18&#125;</span><br></pre></td></tr></table></figure>
 
 
 
-<p>上面的配置中使用了 AppConfig，AppConfig 是用来设置 django中 每个 app 属性的，上面的配置中定义了一个Test01AppConfig 类来继承 AppConfig，并在 init.py 中使用 default_app_config 来加载这个类。<br>重写在ready方法中的代码会在django运行的时候执行。<br>感兴趣的小伙伴可以看下官方文档的介绍：<br><a href="https://docs.djangoproject.com/en/2.1/ref/applications/。" target="_blank" rel="noopener">https://docs.djangoproject.com/en/2.1/ref/applications/。</a></p>
+<p>上面的配置中使用了 AppConfig，AppConfig 是用来设置 django中 每个 app 属性的，上面的配置中定义了一个Test01AppConfig 类来继承 AppConfig，并在 init.py 中使用 default_app_config 来加载这个类。<br>重写在ready方法中的代码会在django运行的时候执行。<br>感兴趣的小伙伴可以看下官方文档的介绍：<br><a href="https://docs.djangoproject.com/en/2.1/ref/applications/。">https://docs.djangoproject.com/en/2.1/ref/applications/。</a></p>
 <p>signals信号的知识就介绍到这里。</p>
 
 

@@ -46,7 +46,7 @@
     <!--Page Cover-->
     
     
-        <meta property="og:image" content="http://wyzane.cc/img/home7.jpg"/>
+        <meta property="og:image" content="/img/home7.jpg"/>
     
 
         <meta name="twitter:card" content="summary_large_image"/>
@@ -54,7 +54,7 @@
     
 
     
-        <meta name="twitter:image" content="http://wyzane.cc/img/home7.jpg"/>
+        <meta name="twitter:image" content="/img/home7.jpg"/>
     
 
     <!-- Title -->
@@ -147,7 +147,7 @@
                     </li>
                 
                     <li>
-                        <a href="http://www.wyzane.com" target="_blank" rel="noopener">
+                        <a href="http://www.wyzane.com">
                             
                                 OldBlog
                             
@@ -155,7 +155,7 @@
                     </li>
                 
                     <li>
-                        <a href="https://github.com/wyzane" target="_blank" rel="noopener">
+                        <a href="https://github.com/wyzane">
                             
                                 <i class="fa fa-github fa-stack-2x"></i>
                             
@@ -210,7 +210,7 @@
 <h2 id="1-安装相关软件"><a href="#1-安装相关软件" class="headerlink" title="1. 安装相关软件"></a>1. 安装相关软件</h2><p>在windows上安装 node.js，npm，git，具体安装步骤可以百度。</p>
 <h2 id="2-创建github仓库"><a href="#2-创建github仓库" class="headerlink" title="2. 创建github仓库"></a>2. 创建github仓库</h2><p>在github上创建名称为 你的用户名.github.io 的仓库，后面搭建成功后，可以在浏览器上输入 https://你的用户名.github.io 来访问博客。</p>
 <p>仓库创建成功后，需要配置SSH Key，以便后续提交博客到仓库中。在windows下 git 的命令行中输入 ssh-keygen 生成 公钥和私钥（公、私钥的文件名称使用默认的即可，不使用默认的文件名后需提交博客可能提示无权限），生成文件后，将 id_rsa.pub 中的内容添加到 仓库 –&gt; Settings –&gt; Deploy key 中。</p>
-<h2 id="3-使用hexo写博客"><a href="#3-使用hexo写博客" class="headerlink" title="3. 使用hexo写博客"></a>3. 使用hexo写博客</h2><p>hexo是一个快速、简单、功能强大的博客框架，在Markdown中写好博客后，hexo可以使用优美的主题将博客生成静态文件。 其官网如下：<a href="http://hexo.io/" target="_blank" rel="noopener">http://hexo.io</a></p>
+<h2 id="3-使用hexo写博客"><a href="#3-使用hexo写博客" class="headerlink" title="3. 使用hexo写博客"></a>3. 使用hexo写博客</h2><p>hexo是一个快速、简单、功能强大的博客框架，在Markdown中写好博客后，hexo可以使用优美的主题将博客生成静态文件。 其官网如下：<a href="http://hexo.io/">http://hexo.io</a></p>
 <h3 id="3-1-安装hexo并初始化"><a href="#3-1-安装hexo并初始化" class="headerlink" title="3.1 安装hexo并初始化"></a>3.1 安装hexo并初始化</h3><p>使用 npm 安装 hexo：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo</span><br></pre></td></tr></table></figure>
 
@@ -221,10 +221,10 @@
 <p>然后可以执行下面的命令：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g  # hexo generate 的缩写，生成静态页面至public目录下</span><br><span class="line">hexo s  # hexo server 的缩写， 启动服务 （默认 http://localhost:4000）</span><br></pre></td></tr></table></figure>
 
-<p>在浏览器上访问 <a href="http://localhost:4000，可以看到有一篇默认的博客和主题。" target="_blank" rel="noopener">http://localhost:4000，可以看到有一篇默认的博客和主题。</a></p>
-<h3 id="3-2-更换主题"><a href="#3-2-更换主题" class="headerlink" title="3.2 更换主题"></a>3.2 更换主题</h3><p>官方主题：<a href="https://hexo.io/themes/" target="_blank" rel="noopener">https://hexo.io/themes/</a></p>
+<p>在浏览器上访问 <a href="http://localhost:4000，可以看到有一篇默认的博客和主题。">http://localhost:4000，可以看到有一篇默认的博客和主题。</a></p>
+<h3 id="3-2-更换主题"><a href="#3-2-更换主题" class="headerlink" title="3.2 更换主题"></a>3.2 更换主题</h3><p>官方主题：<a href="https://hexo.io/themes/">https://hexo.io/themes/</a></p>
 <p>可以到这里寻找自己喜欢的主题，并将其克隆到 hexo工作目录的themes目录下；然后在hexo目录下的_config.yml文件中修改 theme的配置（例如 修改 theme: landscape 为 theme: clean-blog）；最后执行hexo g命令即可。</p>
-<p>更改完主题后，可以重启服务，访问 <a href="http://localhost:4000，查看主题的效果。" target="_blank" rel="noopener">http://localhost:4000，查看主题的效果。</a></p>
+<p>更改完主题后，可以重启服务，访问 <a href="http://localhost:4000，查看主题的效果。">http://localhost:4000，查看主题的效果。</a></p>
 <h3 id="3-3-deploy配置"><a href="#3-3-deploy配置" class="headerlink" title="3.3 deploy配置"></a>3.3 deploy配置</h3><p>在 _config.yml 文件中修改下面的配置：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repository: git@github.com:wyzane/wyzane.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
 
@@ -246,7 +246,7 @@
 <li>支持使用Markdown编写博客，</li>
 <li>扩展对 node.js，hexo，github等知识的应用。</li>
 </ol>
-<p>更多详细信息可以参考这篇文章：<a href="http://blog.haoji.me/build-blog-website-by-hexo-github.html?from=xa" target="_blank" rel="noopener">http://blog.haoji.me/build-blog-website-by-hexo-github.html?from=xa</a></p>
+<p>更多详细信息可以参考这篇文章：<a href="http://blog.haoji.me/build-blog-website-by-hexo-github.html?from=xa">http://blog.haoji.me/build-blog-website-by-hexo-github.html?from=xa</a></p>
 
 
                 
